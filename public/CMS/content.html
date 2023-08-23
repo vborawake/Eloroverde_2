@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="content.js"></script>
+    <script defer src="../pagination.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" integrity="sha512-16esztaSRplJROstbIIdwX3N97V1+pZvV33ABoG1H2OyTttBxEGkTsoIVsiP1iaTtM8b3+hu2kB6pQ4Clr5yug==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="../helper.css">
+    <link rel="stylesheet" href="content.css">
+    <title>CMS</title>
+</head>
+<body>
+    <div class="container flex_column">
+        <div class="content_wrapper flex_row width_full">
+            <div class="notifications_wrapper flex_column">
+                <div class="notification_header flex_row space_between center">
+                    <p>Notifications</p>
+                    <p onclick="window.location.href = '../Notifications/notifications.html'">View All</p>
+                </div>
+                <div class="wrapper flex_column">
+                    <p class="when">Today</p>
+                    <div class="notifications flex_column">
+                        <div class="notification flex_row space_between center">
+                            <div class="left_section flex_row center">
+                                <div class="image"></div>
+                                <div class="text flex_column space_between">
+                                    <div class="name">Lorem, ipsum.</div>
+                                    <div class="time">04:25 PM</div>
+                                </div>
+                            </div>
+                            <div class="right_section flex_row justify_center center">
+                                <img src="../images/delete_outline_black_24dp 1.png" alt="">
+                            </div>
+                        </div>
+                        <div class="notification flex_row space_between center">
+                            <div class="left_section flex_row center">
+                                <div class="image"></div>
+                                <div class="text flex_column space_between">
+                                    <div class="name">Lorem, ipsum.</div>
+                                    <div class="time">04:25 PM</div>
+                                </div>
+                            </div>
+                            <div class="right_section flex_row justify_center center">
+                                <img src="../images/delete_outline_black_24dp 1.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="wrapper flex_column">
+                    <p class="when">Yesterday</p>
+                    <div class="notifications flex_column">
+                        <div class="notification flex_row space_between center">
+                            <div class="left_section flex_row center">
+                                <div class="image"></div>
+                                <div class="text flex_column space_between">
+                                    <div class="name">Lorem, ipsum.</div>
+                                    <div class="time">04:25 PM</div>
+                                </div>
+                            </div>
+                            <div class="right_section flex_row justify_center center">
+                                <img src="../images/delete_outline_black_24dp 1.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="sidebar flex_column">
+                <img src="../images/logo.png">
+                <ul>
+                    <li class="flex_column justify_center">
+                        <a href="../Dashboard/dashboard.html" class="flex_row center">
+                            <img src="../images/dashboard.png" alt="dashboard">
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+                    <li class="flex_column justify_center">
+                        <a href="../User Management/user.html" class="flex_row center">
+                            <img src="../images/management.png" alt="dashboard">
+                            <p>User Management</p>
+                        </a>
+                    </li>
+                    <li class="flex_column justify_center">
+                        <a href="../Product Management/product.html" class="flex_row center">
+                            <img src="../images/product_management.png" alt="dashboard">
+                            <p>Product Management</p>
+                        </a>
+                    </li>
+                    <li class="flex_column justify_center">
+                        <a href="../Orders/orders.html" class="flex_row center">
+                            <img src="../images/purchase_order.png" alt="dashboard">
+                            <p>Orders</p>
+                        </a>
+                    </li>
+                    <li class="flex_column justify_center">
+                        <a href="../Wheel And Games/wheel_games.html" class="flex_row center">
+                            <img src="../images/wheel.png" alt="dashboard">
+                            <p>Raffel Wheel and Games</p>
+                        </a>
+                    </li>
+                    <li class="flex_column justify_center">
+                        <a href="../Marketing/marketing.html" class="flex_row center">
+                            <img src="../images/marketing.png" alt="dashboard">
+                            <p>Manage Marketing</p>
+                        </a>
+                    </li>
+                    <li class="flex_column justify_center">
+                        <a href="../Payment/payment.html" class="flex_row center">
+                            <img src="../images/payment_black_24dp 1.png" alt="dashboard">
+                            <p>Manage Payment</p>
+                        </a>
+                    </li>
+                    <li class="active flex_column justify_center">
+                        <a href="../CMS/content.html" class="flex_row center">
+                            <img src="../images/content.png" alt="dashboard">
+                            <p>CMS</p>
+                        </a>
+                    </li>
+                    <li class="flex_column justify_center">
+                        <a href="../Report/report.html" class="flex_row center">
+                            <img src="../images/graph_report.png" alt="dashboard">
+                            <p>Report</p>
+                        </a>
+                    </li>
+                    <li class="flex_column justify_center">
+                        <a href="../Support/support.html" class="flex_row center">
+                            <img src="../images/headphone.png" alt="dashboard">
+                            <p>Support Management</p>
+                        </a>
+                    </li>
+                </ul>
+                <div class="bottom_buttons flex_row space_between center width_full">
+                    <div class="image" onclick="showNotifications(event)">
+                        <img src="../images/notification.png" alt="">
+                        <span></span>
+                    </div>
+                    <div class="image">
+                        <img src="../images/terms_conditions.png" alt="">
+                    </div>
+                    <div class="image" onclick="showLanguage(event)">
+                        <img src="../images/globe.png" alt="">
+                    </div>
+                    <div class="image" onclick="window.location.href = '../Login/login.html'">
+                        <img src="../images/logout.png" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="right_section flex_column">
+                <div class="header flex_row center space_between" id="stagger">
+                    <div class="header_left_section flex_column">
+                        <h1>CMS</h1>
+                    </div>
+                    <div class="header_right_section flex_row center" onclick="showPopup(event)">
+                        <div class="search flex_row center">
+                            <input type="text">
+                            <img src="../images/search_black.png" alt="search">
+                        </div>
+                        <div class="image">
+                            <img src="../images/profile.png" alt="profile image">
+                        </div>
+                        <p id="username">John</p>
+                    </div>
+                </div>
+                <div class="content_header flex_row space_between center" onclick="showEditScreen(event, 'header')" id="stagger">
+                    <p>Content Management System (CMS)</p>
+                    <button onclick="showPopup2(event)">Add New Category</button>
+                </div>
+                <div class="content flex_column" id="stagger">
+                    <div class="header flex_row space_between center" id="table_stagger">
+                        <p>#</p>
+                        <p>Page List</p>
+                        <p>Action</p>
+                    </div>
+                    <div class="values flex_column">
+                        <div class="value flex_row center space_between" id="table_stagger">
+                            <p>1</p>
+                            <p>Splash Screen</p>
+                            <button onclick="showEditScreen(event, 'splash')"><img src="../images/edit_yellow.png" alt=""></button>
+                        </div>
+                        <div class="value flex_row center space_between" id="table_stagger">
+                            <p>2</p>
+                            <p>Introduction Screen 1</p>
+                            <button onclick="showEditScreen(event, 'intro1')"><img src="../images/edit_yellow.png" alt=""></button>
+                        </div>
+                        <div class="value flex_row center space_between" id="table_stagger">
+                            <p>3</p>
+                            <p>Introduction Screen 2</p>
+                            <button onclick="showEditScreen(event, 'intro2')"><img src="../images/edit_yellow.png" alt=""></button>
+                        </div>
+                        <div class="value flex_row center space_between" id="table_stagger">
+                            <p>4</p>
+                            <p>Introduction Screen 3</p>
+                            <button onclick="showEditScreen(event, 'intro3')"><img src="../images/edit_yellow.png" alt=""></button>
+                        </div>
+                        <div class="value flex_row center space_between" id="table_stagger">
+                            <p>5</p>
+                            <p>About Us</p>
+                            <button onclick="showEditScreen(event, 'terms')"><img src="../images/edit_yellow.png" alt=""></button>
+                        </div>
+                        <div class="value flex_row center space_between" id="table_stagger">
+                            <p>6</p>
+                            <p>FAQ</p>
+                            <button onclick="showEditScreen(event, 'faq')"><img src="../images/edit_yellow.png" alt=""></button>
+                        </div>
+                        <div class="value flex_row center space_between" id="table_stagger">
+                            <p>7</p>
+                            <p>Help Center</p>
+                            <button onclick="showEditScreen(event, 'help_center')"><img src="../images/edit_yellow.png" alt=""></button>
+                        </div>
+                        <div class="value flex_row center space_between" id="table_stagger">
+                            <p>8</p>
+                            <p>Terms & Conditions</p>
+                            <button onclick="showEditScreen(event, 'terms')"><img src="../images/edit_yellow.png" alt=""></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="splash_screen flex_column" style="display: none;" id="screen">
+                    <div class="input flex_row align_flex_start">
+                        <p>Logo</p>
+                        <div class="image flex_row justify_center center">
+                            <img src="../images/Logo.png" alt="">
+                        </div>
+                        <div class="image_input">
+                            <input type="text" placeholder="Choose File">
+                            <div class="file_input flex_row justify_center center">
+                                <img src="../images/file_download_black.png" alt="">
+                                <input type="file">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input flex_row align_flex_start">
+                        <p>Tagline</p>
+                        <input type="text" placeholder="Lorem Ipsum">
+                    </div>
+                    <button>Save</button>
+                </div>
+                <div class="introduction_screen flex_column" style="display: none;" id="screen">
+                    <div class="input flex_row align_flex_start">
+                        <p>Logo</p>
+                        <div class="image flex_row justify_center center">
+                            <img src="../images/Logo.png" alt="">
+                        </div>
+                        <div class="image_input">
+                            <input type="text" placeholder="Choose File">
+                            <div class="file_input flex_row justify_center center">
+                                <input type="file" name="" id="">
+                                <img src="../images/file_download_black.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input flex_row align_flex_start">
+                        <p>Image</p>
+                        <div class="image flex_row justify_center center">
+                            <!-- <img src="../images/Logo.png" alt=""> -->
+                        </div>
+                        <div class="image_input">
+                            <input type="text" placeholder="Choose File">
+                            <div class="file_input flex_row justify_center center">
+                                <input type="file" name="" id="">
+                                <img src="../images/file_download_black.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input flex_row align_flex_start">
+                        <p>Title</p>
+                        <input type="text" placeholder="Lorem Ipsum">
+                    </div>
+                    <button>Save</button>
+                </div>
+                <div class="terms_conditions flex_column" style="display: none;" id="screen">
+                    <div class="input flex_row align_flex_start">
+                        <p>Title</p>
+                        <input type="text" placeholder="Lorem Ipsum">
+                    </div>
+                    <div class="input flex_row align_flex_start">
+                        <p>Description</p>
+                        <textarea type="text" placeholder="Lorem Ipsum"></textarea>
+                    </div>
+                    <button>Save</button>
+                </div>
+                <div class="faq" style="display: none;" id="screen">
+                    <div class="edit_category flex_column" style="display: none;">
+                        <h1>Edit Category</h1>
+                        <div class="input flex_column">
+                            <p>Category</p>
+                            <input type="text">
+                        </div>
+                        <div class="buttons flex_row center">
+                            <button>Submit</button>
+                            <button onclick="event.currentTarget.parentElement.parentElement.style.display = 'none'">Reset</button>
+                        </div>
+                    </div>
+                    <div class="edit_category edit_query flex_column" style="display: none;">
+                        <h1>Edit Query</h1>
+                        <div class="input flex_column">
+                            <p>Category</p>
+                            <input type="text">
+                        </div>
+                        <div class="input flex_column">
+                            <p>Title</p>
+                            <input type="text">
+                        </div>
+                        <div class="input flex_column">
+                            <p>Details</p>
+                            <textarea></textarea>
+                        </div>
+                        <div class="buttons flex_row center">
+                            <button>Submit</button>
+                            <button onclick="event.currentTarget.parentElement.parentElement.style.display = 'none'">Reset</button>
+                        </div>
+                    </div>
+                    <div class="screen_1 content width_full">
+                        <div class="header flex_row space_between center">
+                            <p>#</p>
+                            <p>Category</p>
+                            <p>Action</p>
+                        </div>
+                        <div class="values flex_column">
+                            <div class="value flex_row center space_between">
+                                <p>1</p>
+                                <p onclick="showEditScreen(event, 'signup')">Sign Up & Login</p>
+                                <div class="action flex_row space_between center">
+                                    <button onclick="document.querySelector('.edit_category.flex_column').style.display = 'flex'; document.querySelector('.edit_category.flex_column h1').innerHTML = 'Edit Category'"><img src="../images/edit_yellow.png" alt=""></button>
+                                    <button><img src="../images/delete_outline_black_24dp 1.png" alt=""></button>
+                                </div>
+                            </div>
+                            <div class="value flex_row center space_between">
+                                <p>2</p>
+                                <p onclick="showEditScreen(event, 'signup')">Shipping & Delivery</p>
+                                <div class="action flex_row space_between center">
+                                    <button onclick="document.querySelector('.edit_category.flex_column').style.display = 'flex'; document.querySelector('.edit_category.flex_column h1').innerHTML = 'Edit Category'"><img src="../images/edit_yellow.png" alt=""></button>
+                                    <button><img src="../images/delete_outline_black_24dp 1.png" alt=""></button>
+                                </div>
+                            </div>
+                            <div class="value flex_row center space_between">
+                                <p>3</p>
+                                <p onclick="showEditScreen(event, 'signup')">Cancellation</p>
+                                <div class="action flex_row space_between center">
+                                    <button onclick="document.querySelector('.edit_category.flex_column').style.display = 'flex'; document.querySelector('.edit_category.flex_column h1').innerHTML = 'Edit Category'"><img src="../images/edit_yellow.png" alt=""></button>
+                                    <button><img src="../images/delete_outline_black_24dp 1.png" alt=""></button>
+                                </div>
+                            </div>
+                            <div class="value flex_row center space_between">
+                                <p>4</p>
+                                <p onclick="showEditScreen(event, 'signup')">Payment</p>
+                                <div class="action flex_row space_between center">
+                                    <button onclick="document.querySelector('.edit_category.flex_column').style.display = 'flex'; document.querySelector('.edit_category.flex_column h1').innerHTML = 'Edit Category'"><img src="../images/edit_yellow.png" alt=""></button>
+                                    <button><img src="../images/delete_outline_black_24dp 1.png" alt=""></button>
+                                </div>
+                            </div>
+                            <div class="value flex_row center space_between">
+                                <p>5</p>
+                                <p onclick="showEditScreen(event, 'signup')">Coupons</p>
+                                <div class="action flex_row space_between center">
+                                    <button onclick="document.querySelector('.edit_category.flex_column').style.display = 'flex'; document.querySelector('.edit_category.flex_column h1').innerHTML = 'Edit Category'"><img src="../images/edit_yellow.png" alt=""></button>
+                                    <button><img src="../images/delete_outline_black_24dp 1.png" alt=""></button>
+                                </div>
+                            </div>
+                            <div class="value flex_row center space_between">
+                                <p>6</p>
+                                <p onclick="showEditScreen(event, 'signup')">Raffle Wheel   & Games</p>
+                                <div class="action flex_row space_between center">
+                                    <button onclick="document.querySelector('.edit_category.flex_column').style.display = 'flex'; document.querySelector('.edit_category.flex_column h1').innerHTML = 'Edit Category'"><img src="../images/edit_yellow.png" alt=""></button>
+                                    <button><img src="../images/delete_outline_black_24dp 1.png" alt=""></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="screen_2 content width_full" style="display: none;">
+                        <div class="header flex_row space_between center">
+                            <p>#</p>
+                            <p>Title</p>
+                            <p>Details</p>
+                            <p>Action</p>
+                        </div>
+                        <div class="values flex_column">
+                            <div class="value flex_row center space_between">
+                                <p>1</p>
+                                <p>How do I create an account?</p>
+                                <p>Lorem, ipsum.</p>
+                                <div class="action flex_row justify_center center">
+                                    <button onclick="document.querySelector('.edit_query.flex_column').style.display = 'flex'; document.querySelector('.edit_query.flex_column h1').innerHTML = 'Edit Query'"><img src="../images/edit_yellow.png" alt=""></button>
+                                    <button><img src="../images/delete_outline_black_24dp 1.png" alt=""></button>
+                                </div>
+                            </div>
+                            <div class="value flex_row center space_between">
+                                <p>2</p>
+                                <p>How do I create an account?</p>
+                                <p>Lorem, ipsum.</p>
+                                <div class="action flex_row justify_center center">
+                                    <button onclick="document.querySelector('.edit_query.flex_column').style.display = 'flex'; document.querySelector('.edit_query.flex_column h1').innerHTML = 'Edit Query'"><img src="../images/edit_yellow.png" alt=""></button>
+                                    <button><img src="../images/delete_outline_black_24dp 1.png" alt=""></button>
+                                </div>
+                            </div>
+                            <div class="value flex_row center space_between">
+                                <p>3</p>
+                                <p>How do I create an account?</p>
+                                <p>Lorem, ipsum.</p>
+                                <div class="action flex_row justify_center center">
+                                    <button onclick="document.querySelector('.edit_query.flex_column').style.display = 'flex'; document.querySelector('.edit_query.flex_column h1').innerHTML = 'Edit Query'"><img src="../images/edit_yellow.png" alt=""></button>
+                                    <button><img src="../images/delete_outline_black_24dp 1.png" alt=""></button>
+                                </div>
+                            </div>
+                            <div class="value flex_row center space_between">
+                                <p>4</p>
+                                <p>How do I create an account?</p>
+                                <p>Lorem, ipsum.</p>
+                                <div class="action flex_row justify_center center">
+                                    <button onclick="document.querySelector('.edit_query.flex_column').style.display = 'flex'; document.querySelector('.edit_query.flex_column h1').innerHTML = 'Edit Query'"><img src="../images/edit_yellow.png" alt=""></button>
+                                    <button><img src="../images/delete_outline_black_24dp 1.png" alt=""></button>
+                                </div>
+                            </div>
+                            <div class="value flex_row center space_between">
+                                <p>5</p>
+                                <p>How do I create an account?</p>
+                                <p>Lorem, ipsum.</p>
+                                <div class="action flex_row justify_center center">
+                                    <button onclick="document.querySelector('.edit_query.flex_column').style.display = 'flex'; document.querySelector('.edit_query.flex_column h1').innerHTML = 'Edit Query'"><img src="../images/edit_yellow.png" alt=""></button>
+                                    <button><img src="../images/delete_outline_black_24dp 1.png" alt=""></button>
+                                </div>
+                            </div>
+                            <div class="value flex_row center space_between">
+                                <p>6</p>
+                                <p>How do I create an account?</p>
+                                <p>Lorem, ipsum.</p>
+                                <div class="action flex_row justify_center center">
+                                    <button onclick="document.querySelector('.edit_query.flex_column').style.display = 'flex'; document.querySelector('.edit_query.flex_column h1').innerHTML = 'Edit Query'"><img src="../images/edit_yellow.png" alt=""></button>
+                                    <button><img src="../images/delete_outline_black_24dp 1.png" alt=""></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="terms_conditions help_center flex_column" style="display: none;" id="screen">
+                    <div class="input flex_row align_flex_start">
+                        <p>Email</p>
+                        <input type="text" placeholder="Lorem Ipsum">
+                    </div>
+                    <div class="input flex_row center">
+                        <p>Contact</p>
+                        <div class="contact flex_row space_between center">
+                            <div class="country_code">
+                                <input type="text" placeholder="+81" disabled>
+                            </div>
+                            <div class="number">
+                                <input type="text" placeholder="25489662256" disabled>
+                            </div>
+                        </div>
+                    </div>
+                    <button>Save</button>
+                </div>
+            </div>
+        </div>
+        <div class="menu flex_column" id="menu">
+            <div class="item flex_row center" onclick="window.location.href = '../Profile/profile.html'">
+                <img src="../images/account_circle_green.png" alt="">
+                <p>Profile</p>
+            </div>
+            <div class="item flex_row center" onclick="window.location.href = '../Profile/profile.html'; localStorage.setItem('password', 'true')">
+                <img src="../images/password_green.png" alt="">
+                <p>Change Password</p>
+            </div>
+            <div class="item flex_row center" onclick="window.location.href = '../Notification Settings/settingsAdmin.html'">
+                <img src="../images/notifications_green.png" alt="">
+                <p>Notification Settings</p>
+            </div>
+            <div class="item flex_row center" onclick="window.location.href = '../Login/login.html'">
+                <img src="../images/logout_green.png" alt="">
+                <p>Logout</p>
+            </div>
+        </div>
+        <div class="menu flex_column" id="language">
+            <div class="item flex_row center" onclick="window.location.href = '../Profile/profile.html'">
+                <img src="../images/great_britain.png" alt="">
+                <p>English</p>
+            </div>
+            <div class="item flex_row center" onclick="window.location.href = '../Profile/profile.html'; localStorage.setItem('password', 'true')">
+                <img src="../images/spain.png" alt="">
+                <p>Spanish</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

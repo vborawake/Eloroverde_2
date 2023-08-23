@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.3.0/chart.umd.js" integrity="sha512-CMF3tQtjOoOJoOKlsS7/2loJlkyctwzSoDK/S40iAB+MqWSaf50uObGQSk5Ny/gfRhRCjNLvoxuCvdnERU4WGg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" integrity="sha512-16esztaSRplJROstbIIdwX3N97V1+pZvV33ABoG1H2OyTttBxEGkTsoIVsiP1iaTtM8b3+hu2kB6pQ4Clr5yug==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script defer src="report.js"></script>
+    <script defer src="../pagination.js"></script>
+    <link rel="stylesheet" href="report.css">
+    <link rel="stylesheet" href="../helper.css">
+    <title>Report</title>
+</head>
+<body>
+    <div class="container flex_column">
+        <div class="content_wrapper flex_row width_full">
+            <div class="notifications_wrapper flex_column">
+                <div class="notification_header flex_row space_between center">
+                    <p>Notifications</p>
+                    <p onclick="window.location.href = '../Notifications/notifications.html'">View All</p>
+                </div>
+                <div class="wrapper flex_column">
+                    <p class="when">Today</p>
+                    <div class="notifications flex_column">
+                        <div class="notification flex_row space_between center">
+                            <div class="left_section flex_row center">
+                                <div class="image"></div>
+                                <div class="text flex_column space_between">
+                                    <div class="name">Lorem, ipsum.</div>
+                                    <div class="time">04:25 PM</div>
+                                </div>
+                            </div>
+                            <div class="right_section flex_row justify_center center">
+                                <img src="../images/delete_outline_black_24dp 1.png" alt="">
+                            </div>
+                        </div>
+                        <div class="notification flex_row space_between center">
+                            <div class="left_section flex_row center">
+                                <div class="image"></div>
+                                <div class="text flex_column space_between">
+                                    <div class="name">Lorem, ipsum.</div>
+                                    <div class="time">04:25 PM</div>
+                                </div>
+                            </div>
+                            <div class="right_section flex_row justify_center center">
+                                <img src="../images/delete_outline_black_24dp 1.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="wrapper flex_column">
+                    <p class="when">Yesterday</p>
+                    <div class="notifications flex_column">
+                        <div class="notification flex_row space_between center">
+                            <div class="left_section flex_row center">
+                                <div class="image"></div>
+                                <div class="text flex_column space_between">
+                                    <div class="name">Lorem, ipsum.</div>
+                                    <div class="time">04:25 PM</div>
+                                </div>
+                            </div>
+                            <div class="right_section flex_row justify_center center">
+                                <img src="../images/delete_outline_black_24dp 1.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="sidebar flex_column">
+                <img src="../images/logo.png">
+                <ul>
+                    <li class="flex_column justify_center">
+                        <a href="../Dashboard/dashboard.html" class="flex_row center">
+                            <img src="../images/dashboard.png" alt="dashboard">
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+                    <li class="flex_column justify_center">
+                        <a href="../User Management/user.html" class="flex_row center">
+                            <img src="../images/management.png" alt="dashboard">
+                            <p>User Management</p>
+                        </a>
+                    </li>
+                    <li class="flex_column justify_center">
+                        <a href="../Product Management/product.html" class="flex_row center">
+                            <img src="../images/product_management.png" alt="dashboard">
+                            <p>Product Management</p>
+                        </a>
+                    </li>
+                    <li class="flex_column justify_center">
+                        <a href="../Orders/orders.html" class="flex_row center">
+                            <img src="../images/purchase_order.png" alt="dashboard">
+                            <p>Orders</p>
+                        </a>
+                    </li>
+                    <li class="flex_column justify_center">
+                        <a href="../Wheel And Games/wheel_games.html" class="flex_row center">
+                            <img src="../images/wheel.png" alt="dashboard">
+                            <p>Raffel Wheel and Games</p>
+                        </a>
+                    </li>
+                    <li class="flex_column justify_center">
+                        <a href="../Marketing/marketing.html" class="flex_row center">
+                            <img src="../images/marketing.png" alt="dashboard">
+                            <p>Manage Marketing</p>
+                        </a>
+                    </li>
+                    <li class="flex_column justify_center">
+                        <a href="../Payment/payment.html" class="flex_row center">
+                            <img src="../images/payment_black_24dp 1.png" alt="dashboard">
+                            <p>Manage Payment</p>
+                        </a>
+                    </li>
+                    <li class="flex_column justify_center">
+                        <a href="../CMS/content.html" class="flex_row center">
+                            <img src="../images/content.png" alt="dashboard">
+                            <p>CMS</p>
+                        </a>
+                    </li>
+                    <li class="active flex_column justify_center">
+                        <a href="../Report/report.html" class="flex_row center">
+                            <img src="../images/graph_report.png" alt="dashboard">
+                            <p>Report</p>
+                        </a>
+                    </li>
+                    <li class="flex_column justify_center">
+                        <a href="../Support/support.html" class="flex_row center">
+                            <img src="../images/headphone.png" alt="dashboard">
+                            <p>Support Management</p>
+                        </a>
+                    </li>
+                </ul>
+                <div class="bottom_buttons flex_row space_between center width_full">
+                    <div class="image" onclick="showNotifications(event)">
+                        <img src="../images/notification.png" alt="">
+                        <span></span>
+                    </div>
+                    <div class="image">
+                        <img src="../images/terms_conditions.png" alt="">
+                    </div>
+                    <div class="image"  onclick="showLanguage(event)">
+                        <img src="../images/globe.png" alt="">
+                    </div>
+                    <div class="image" onclick="window.location.href = '../Login/login.html'">
+                        <img src="../images/logout.png" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="right_section flex_column">
+                <div class="header flex_row center space_between" id="stagger">
+                    <div class="header_left_section flex_column">
+                        <h1>Welcome Back, <span id="username">John</span></h1>
+                        <p>Here is what happening with your store today !</p>
+                    </div>
+                    <div class="header_right_section flex_row center" onclick="showPopup(event)">
+                        <div class="search flex_row center">
+                            <input type="text">
+                            <img src="../images/search_black.png" alt="search">
+                        </div>
+                        <div class="image">
+                            <img src="../images/profile.png" alt="profile image">
+                        </div>
+                        <p id="username">John</p>
+                    </div>
+                </div>
+                <div class="stats flex_row space_between" id="stagger">
+                    <div class="stat flex_column space_evenly" id="stat_stagger">
+                        <div class="top_row flex_row center">
+                            <img src="../images/sales.png" alt="sales">
+                            <p>Total Sales</p>
+                        </div>
+                        <div class="bottom_row flex_row space_between center">
+                            <p>€ 2224.90</p>
+                            <img src="../images/sales_icon.png" alt="">
+                        </div>
+                    </div>
+                    <div class="stat flex_column space_evenly" id="stat_stagger">
+                        <div class="top_row flex_row center">
+                            <img src="../images/unique_visitor.png" alt="sales">
+                            <p>Visitors</p>
+                        </div>
+                        <div class="bottom_row flex_row space_between center">
+                            <p>25632</p>
+                            <img src="../images/sales_icon.png" alt="">
+                        </div>
+                    </div>
+                    <div class="stat flex_column space_evenly" id="stat_stagger">
+                        <div class="top_row flex_row center">
+                            <img src="../images/box.png" alt="sales">
+                            <p>Orders</p>
+                        </div>
+                        <div class="bottom_row flex_row space_between center">
+                            <p>2000</p>
+                            <img src="../images/sales_icon.png" alt="">
+                        </div>
+                    </div>
+                    <div class="stat flex_column space_evenly" id="stat_stagger">
+                        <div class="top_row flex_row center">
+                            <img src="../images/unit.png" alt="sales">
+                            <p>Units Sold</p>
+                        </div>
+                        <div class="bottom_row flex_row space_between center">
+                            <p>1236</p>
+                            <img src="../images/sales_icon.png" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="bar_area flex_row space_between" id="stagger">
+                    <div class="bar flex_column box" id="chart_stagger">
+                        <div class="header flex_row space_between center width_full">
+                            <h1>Total Revenue $ 347200</h1>
+                            <div class="date_picker flex_row space_between center">
+                                <p>May 2023</p>
+                                <svg width="24" height="24" viewBox="0 0 15 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M13.0417 2H12.25V0H10.6667V2H4.33333V0H2.75V2H1.95833C1.07958 2 0.382917 2.9 0.382917 4L0.375 18C0.375 19.1 1.07958 20 1.95833 20H13.0417C13.9125 20 14.625 19.1 14.625 18V4C14.625 2.9 13.9125 2 13.0417 2ZM13.0417 18H1.95833V8H13.0417V18ZM5.125 12H3.54167V10H5.125V12ZM8.29167 12H6.70833V10H8.29167V12ZM11.4583 12H9.875V10H11.4583V12ZM5.125 16H3.54167V14H5.125V16ZM8.29167 16H6.70833V14H8.29167V16ZM11.4583 16H9.875V14H11.4583V16Z" fill="#9699A0"/>
+                                </svg>
+                                <input type="date" name="" id="">
+                            </div>
+                        </div>
+                        <canvas id="bar"></canvas>
+                    </div>
+                </div>
+                <div class="chart_section flex_row space_between" id="stagger">
+                    <div class="area_chart box flex_column align_flex_start" id="chart_stagger">
+                        <div class="header flex_row space_between center width_full">
+                            <h1>Order</h1>
+                            <div class="date_picker flex_row space_between center">
+                                <p>2023</p>
+                                <svg width="24" height="24" viewBox="0 0 15 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M13.0417 2H12.25V0H10.6667V2H4.33333V0H2.75V2H1.95833C1.07958 2 0.382917 2.9 0.382917 4L0.375 18C0.375 19.1 1.07958 20 1.95833 20H13.0417C13.9125 20 14.625 19.1 14.625 18V4C14.625 2.9 13.9125 2 13.0417 2ZM13.0417 18H1.95833V8H13.0417V18ZM5.125 12H3.54167V10H5.125V12ZM8.29167 12H6.70833V10H8.29167V12ZM11.4583 12H9.875V10H11.4583V12ZM5.125 16H3.54167V14H5.125V16ZM8.29167 16H6.70833V14H8.29167V16ZM11.4583 16H9.875V14H11.4583V16Z" fill="#9699A0"/>
+                                </svg>
+                                <input type="date" name="" id="">
+                            </div>
+                        </div>
+                        <canvas id="line"></canvas>
+                    </div>
+                    <div class="doughnut_chart box flex_column align_flex_start" id="chart_stagger">
+                        <div class="header flex_row space_between center width_full">
+                            <h1>Earning By Category</h1>
+                        </div>
+                        <canvas id="doughnut"></canvas>
+                        <!-- <p id="summary">Total 212</p> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="menu flex_column" id="menu">
+            <div class="item flex_row center" onclick="window.location.href = '../Profile/profile.html'">
+                <img src="../images/account_circle_green.png" alt="">
+                <p>Profile</p>
+            </div>
+            <div class="item flex_row center" onclick="window.location.href = '../Profile/profile.html'; localStorage.setItem('password', 'true')">
+                <img src="../images/password_green.png" alt="">
+                <p>Change Password</p>
+            </div>
+            <div class="item flex_row center" onclick="window.location.href = '../Notification Settings/settingsAdmin.html'">
+                <img src="../images/notifications_green.png" alt="">
+                <p>Notification Settings</p>
+            </div>
+            <div class="item flex_row center" onclick="window.location.href = '../Login/login.html'">
+                <img src="../images/logout_green.png" alt="">
+                <p>Logout</p>
+            </div>
+        </div>
+        <div class="menu flex_column" id="language">
+            <div class="item flex_row center" onclick="window.location.href = '../Profile/profile.html'">
+                <img src="../images/great_britain.png" alt="">
+                <p>English</p>
+            </div>
+            <div class="item flex_row center" onclick="window.location.href = '../Profile/profile.html'; localStorage.setItem('password', 'true')">
+                <img src="../images/spain.png" alt="">
+                <p>Spanish</p>
+            </div>
+        </div>
+    </div>
+    <script>window.addEventListener('resize', () => { console.log(window.innerWidth); })</script>
+</body>
+</html>

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="notification.css">
+    <link rel="stylesheet" href="../helper.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.3.0/chart.umd.js" integrity="sha512-CMF3tQtjOoOJoOKlsS7/2loJlkyctwzSoDK/S40iAB+MqWSaf50uObGQSk5Ny/gfRhRCjNLvoxuCvdnERU4WGg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script defer src="../pagination.js"></script>
+    <script defer src="notification.js"></script>
+    <title>All Notifications</title>
+</head>
+<body>
+    <div class="container flex_column">
+        <nav class="flex_row space_between center">
+            <img src="../images/Logo.png" alt="logo">
+            <div class="right_section flex_row space_between center" onclick="showPopup(event)">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16.6667 14.6667H15.6133L15.24 14.3067C16.5467 12.7867 17.3333 10.8133 17.3333 8.66667C17.3333 3.88 13.4533 0 8.66667 0C3.88 0 0 3.88 0 8.66667C0 13.4533 3.88 17.3333 8.66667 17.3333C10.8133 17.3333 12.7867 16.5467 14.3067 15.24L14.6667 15.6133V16.6667L21.3333 23.32L23.32 21.3333L16.6667 14.6667ZM8.66667 14.6667C5.34667 14.6667 2.66667 11.9867 2.66667 8.66667C2.66667 5.34667 5.34667 2.66667 8.66667 2.66667C11.9867 2.66667 14.6667 5.34667 14.6667 8.66667C14.6667 11.9867 11.9867 14.6667 8.66667 14.6667Z" fill="#778087"/>
+                </svg>
+                <div class="profile_img"></div>
+                <p class="username">John</p>
+            </div>
+            <div class="menu flex_column" id="menu">
+                <div class="item flex_row center" onclick="window.location.href = '../Profile/profile.html'">
+                    <img src="../images/account_circle_green.png" alt="">
+                    <p>Profile</p>
+                </div>
+                <div class="item flex_row center" onclick="window.location.href = '../Profile/profile.html'; localStorage.setItem('password', 'true')">
+                    <img src="../images/password_green.png" alt="">
+                    <p>Change Password</p>
+                </div>
+                <div class="item flex_row center"  onclick="window.location.href = '../Notification/notification.html'">
+                    <img src="../images/notifications_green.png" alt="">
+                    <p>Notification Settings</p>
+                </div>
+                <div class="item flex_row center" onclick="window.location.href = '../Login/login.html'">
+                    <img src="../images/logout_green.png" alt="">
+                    <p>Logout</p>
+                </div>
+            </div>
+        </nav>
+        <div class="content_wrapper flex_row width_full">
+            <div class="notifications_wrapper flex_column">
+                <div class="notification_header flex_row space_between center">
+                    <p>Notifications</p>
+                    <p onclick="window.location.href = '../Notifications/notifications.html'">View All</p>
+                </div>
+                <div class="wrapper flex_column">
+                    <p class="when">Today</p>
+                    <div class="notifications flex_column">
+                        <div class="notification flex_row space_between center">
+                            <div class="left_section flex_row center">
+                                <div class="image"></div>
+                                <div class="text flex_column space_between">
+                                    <div class="name">Lorem, ipsum.</div>
+                                    <div class="time">04:25 PM</div>
+                                </div>
+                            </div>
+                            <div class="right_section flex_row justify_center center">
+                                <img src="../images/delete_outline_black_24dp 1.png" alt="">
+                            </div>
+                        </div>
+                        <div class="notification flex_row space_between center">
+                            <div class="left_section flex_row center">
+                                <div class="image"></div>
+                                <div class="text flex_column space_between">
+                                    <div class="name">Lorem, ipsum.</div>
+                                    <div class="time">04:25 PM</div>
+                                </div>
+                            </div>
+                            <div class="right_section flex_row justify_center center">
+                                <img src="../images/delete_outline_black_24dp 1.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="wrapper flex_column">
+                    <p class="when">Yesterday</p>
+                    <div class="notifications flex_column">
+                        <div class="notification flex_row space_between center">
+                            <div class="left_section flex_row center">
+                                <div class="image"></div>
+                                <div class="text flex_column space_between">
+                                    <div class="name">Lorem, ipsum.</div>
+                                    <div class="time">04:25 PM</div>
+                                </div>
+                            </div>
+                            <div class="right_section flex_row justify_center center">
+                                <img src="../images/delete_outline_black_24dp 1.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="menu flex_column" id="language">
+                <div class="item flex_row center" onclick="window.location.href = '../Profile/profile.html'">
+                    <img src="../images/great_britain.png" alt="">
+                    <p>English</p>
+                </div>
+                <div class="item flex_row center" onclick="window.location.href = '../Profile/profile.html'; localStorage.setItem('password', 'true')">
+                    <img src="../images/spain.png" alt="">
+                    <p>Spanish</p>
+                </div>
+            </div>
+            <div class="sidebar flex_column">
+                <ul>
+                    <li class="flex_column justify_center">
+                        <a href="../Dashboard/dashboard.html" class="flex_row center">
+                            <img src="../images/icons8-dashboard-layout-48 (1) 2.png" alt="dashboard">
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+                    <li class="flex_column justify_center">
+                        <a href="../Profile Management/profilManagement.html" class="flex_row center">
+                            <img src="../images/icons8-management-48 (1) 1.png" alt="dashboard">
+                            <p>Profile Management</p>
+                        </a>
+                    </li>
+                    <li class="flex_column justify_center">
+                        <a href="../Training/training.html" class="flex_row center">
+                            <img src="../images/icons8-training-48.png" alt="dashboard">
+                            <p>Training</p>
+                        </a>
+                    </li>
+                    <li class="flex_column justify_center">
+                        <a href="../Career/career.html" class="flex_row center">
+                            <img src="../images/icons8-attract-customers.png" alt="dashboard">
+                            <p>Kareer</p>
+                        </a>
+                    </li>
+                    <li class="flex_column justify_center">
+                        <a href="../Campaign/campaign.html" class="flex_row center">
+                            <img src="../images/icons8-commercial.png" alt="dashboard">
+                            <p>Campaign</p>
+                        </a>
+                    </li>
+                    <li class="flex_column justify_center">
+                        <a href="../Klinic/klinic.html" class="flex_row center">
+                            <img src="../images/icons8_clinic.png" alt="dashboard">
+                            <p>Klinic</p>
+                        </a>
+                    </li>
+                    <li class="flex_column justify_center">
+                        <a href="../CMS/content.html" class="flex_row center">
+                            <img src="../images/content_white.png" alt="dashboard">
+                            <p>CMS</p>
+                        </a>
+                    </li>
+                    <li class="flex_column justify_center">
+                        <a href="../Billing/billing.html" class="flex_row center">
+                            <img src="../images/icons8-check-dollar.png" alt="dashboard">
+                            <p>Billing</p>
+                        </a>
+                    </li>
+                    <li class="flex_column justify_center">
+                        <a href="../Report/report.html" class="flex_row center">
+                            <img src="../images/icons8-report.png" alt="dashboard">
+                            <p>Report</p>
+                        </a>
+                    </li>
+                    <li class="flex_column justify_center">
+                        <a href="../Support/support.html" class="flex_row center">
+                            <img src="../images/icons8-help.png" alt="dashboard">
+                            <p>Support Management</p>
+                        </a>
+                    </li>
+                </ul>
+                <div class="bottom_buttons flex_row space_between center width_full">
+                    <div class="image" onclick="showNotifications(event)">
+                        <img src="../images/bell.png" alt="">
+                        <span></span>
+                    </div>
+                    <div class="image">
+                        <img src="../images/shield.png" alt="">
+                    </div>
+                    <div class="image" onclick="showLanguage(event)">
+                        <img src="../images/globe.png" alt="">
+                    </div>
+                    <div class="image" onclick="window.location.href = '../Login/login.html'">
+                        <img src="../images/icons8-logout-64 1.png" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="right_section flex_column">
+                <div class="header flex_row space_between center">
+                    <p>Notifications</p>
+                    <div class="checkbox flex_row center">
+                        <input type="checkbox">
+                        <p>Mark all as read</p>
+                    </div>
+                    <button id="change_password" onclick="showEditScreen(event, 'password')">Change Password</button>
+                </div>
+                <div class="notifications_wrapper flex_column">
+                    <div class="wrapper flex_column">
+                        <p class="when flex_row justify_center center">Today</p>
+                        <div class="notifications flex_column">
+                            <div class="notification flex_row space_between center">
+                                <div class="left_section flex_row center">
+                                    <div class="image"></div>
+                                    <div class="text flex_column space_between">
+                                        <div class="name">Lorem, ipsum.</div>
+                                        <div class="time">04:25 PM</div>
+                                    </div>
+                                </div>
+                                <div class="right_section flex_row justify_center center">
+                                    <img src="../images/delete_outline_black_24dp 1.png" alt="">
+                                </div>
+                            </div>
+                            <div class="notification flex_row space_between center">
+                                <div class="left_section flex_row center">
+                                    <div class="image"></div>
+                                    <div class="text flex_column space_between">
+                                        <div class="name">Lorem, ipsum.</div>
+                                        <div class="time">04:25 PM</div>
+                                    </div>
+                                </div>
+                                <div class="right_section flex_row justify_center center">
+                                    <img src="../images/delete_outline_black_24dp 1.png" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="wrapper flex_column">
+                        <p class="when flex_row justify_center center">Yesterday</p>
+                        <div class="notifications flex_column">
+                            <div class="notification flex_row space_between center">
+                                <div class="left_section flex_row center">
+                                    <div class="image"></div>
+                                    <div class="text flex_column space_between">
+                                        <div class="name">Lorem, ipsum.</div>
+                                        <div class="time">04:25 PM</div>
+                                    </div>
+                                </div>
+                                <div class="right_section flex_row justify_center center">
+                                    <img src="../images/delete_outline_black_24dp 1.png" alt="">
+                                </div>
+                            </div>
+                            <div class="notification flex_row space_between center">
+                                <div class="left_section flex_row center">
+                                    <div class="image"></div>
+                                    <div class="text flex_column space_between">
+                                        <div class="name">Lorem, ipsum.</div>
+                                        <div class="time">04:25 PM</div>
+                                    </div>
+                                </div>
+                                <div class="right_section flex_row justify_center center">
+                                    <img src="../images/delete_outline_black_24dp 1.png" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="wrapper flex_column">
+                        <p class="when flex_row justify_center center">20/7/2023</p>
+                        <div class="notifications flex_column">
+                            <div class="notification flex_row space_between center">
+                                <div class="left_section flex_row center">
+                                    <div class="image"></div>
+                                    <div class="text flex_column space_between">
+                                        <div class="name">Lorem, ipsum.</div>
+                                        <div class="time">04:25 PM</div>
+                                    </div>
+                                </div>
+                                <div class="right_section flex_row justify_center center">
+                                    <img src="../images/delete_outline_black_24dp 1.png" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
