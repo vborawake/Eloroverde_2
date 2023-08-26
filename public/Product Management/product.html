@@ -49,11 +49,37 @@
         saving: 'CategoryWithData'
     }
     );
+    Gets(
+    {
+        method: 'GET',
+        urls: 'products/packs',
+        headerss: {
+            'Content-Type': 'application/json',
+            'authorization': 'Bearer '+data.token
+        },
+        actions: '',
+        saving: 'Packs'
+    }
+    );
+    Gets(
+    {
+        method: 'GET',
+        urls: 'products/virals',
+        headerss: {
+            'Content-Type': 'application/json',
+            'authorization': 'Bearer '+data.token
+        },
+        actions: '',
+        saving: 'Virals'
+    }
+    );
     goes();
     goes1();
     goes2();
+    goe1();
+    goe2();
     }">
-<!-- <body> -->
+    <!-- <body> -->
     <div class="container flex_column">
         <div class="content_wrapper flex_row width_full">
             <div class="notifications_wrapper flex_column">
@@ -228,6 +254,14 @@
                                 <img src="../images/file_download_black.png" alt="" id="cateimg">
                             </div>
                         </div>
+                    </div>
+                    <div class="input flex_column category_name" style="display: none;">
+                        <p>Category</p>
+                        <input type="text" placeholder="Seeds" id="sku" style="width: 100%;">
+                    </div>
+                    <div class="input flex_column subcategory_name" style="display: none;">
+                        <p>Subcategory</p>
+                        <input type="text" placeholder="Wooden Tray" id="sku" style="width: 100%;">
                     </div>
                     <div class="buttons flex_row center">
                         <button id="sub" onclick="EditProduct()">Submit</button>
@@ -407,7 +441,7 @@
                     <!-- Main product categories -->
                     <div class="appointments_header flex_row center space_between" id="product_table_stagger">
                         <div class="appointments_header_left flex_row center">
-                            <h1 onclick="showDetails(event, 'products')" class="active">Product Category</h1>
+                            <h1 id="products_tab" onclick="showDetails(event, 'products')" class="active">Product Category</h1>
                             <h1 id="brands_tab" onclick="showDetails(event, 'brands')">Brands</h1>
                             <h1 id="packs_tab" onclick="showDetails(event, 'packs')">Packs</h1>
                             <h1 id="virals_tab" onclick="showDetails(event, 'virals')">Virals</h1>
@@ -520,9 +554,9 @@
                                 <p>Brand Name</p>
                                 <button><img src="../images/sort.png" alt=""></button>
                             </div>
-                            <!-- <p># of Products</p>
+                            <p># of Products</p>
                             <p>Stock</p>
-                            <p>Position</p> -->
+                            <p>Position</p>
                             <p>Action</p>
                         </div>
                         <!-- <div class="values flex_row space_between center" id="brand_table_stagger">
@@ -617,7 +651,7 @@
                             <p>Position</p>
                             <p>Action</p>
                         </div>
-                        <div class="values flex_row space_between center" id="pack_table_stagger">
+                        <!-- <div class="values flex_row space_between center" id="pack_table_stagger">
                             <div class="image flex_row center">
                                 <img src="../images/pack.png" alt="">
                             </div>
@@ -694,7 +728,8 @@
                                 <button onclick="showDetails(event, 'add_pack')"><img src="../images/edit_yellow.png" alt=""></button>
                                 <button><img src="../images/delete_outline_black_24dp 1.png" alt=""></button>
                             </div>
-                        </div>
+                        </div> -->
+                        <div id="packks"></div>
                     </div>
                     <div class="virals flex_column width_full" style="display: none;">
                         <div class="header flex_row space_between center" id="virals_table_stagger">
@@ -708,7 +743,7 @@
                             <p>Position</p>
                             <p>Action</p>
                         </div>
-                        <div class="values flex_row space_between center" id="virals_table_stagger">
+                        <!-- <div class="values flex_row space_between center" id="virals_table_stagger">
                             <div class="image flex_row center">
                                 <img src="../images/pack.png" alt="">
                             </div>
@@ -772,7 +807,8 @@
                                 <button onclick="showDetails(event, 'product_details')"><img src="../images/edit_yellow.png" alt=""></button>
                                 <button><img src="../images/delete_outline_black_24dp 1.png" alt=""></button>
                             </div>
-                        </div>
+                        </div> -->
+                        <div id="vir"></div>
                     </div>
                 </div>
 
@@ -912,7 +948,7 @@
                         <p>SKU</p>
                         <p>Action</p>
                     </div>
-                    <div class="values flex_row space_between center" id="product_details_table_stagger">
+                    <!-- <div class="values flex_row space_between center" id="product_details_table_stagger">
                         <div class="image flex_row center">
                             <span></span>
                         </div>
@@ -996,7 +1032,8 @@
                             <button onclick="showDetails(event, 'edit_category')"><img src="../images/edit_yellow.png" alt=""></button>
                             <button><img src="../images/delete_outline_black_24dp 1.png" alt=""></button>
                         </div>
-                    </div>
+                    </div> -->
+                    <div id="subcatss"></div>
                 </div>
                 <!-- Third Subcategory -->
                 <div class="appointments flex_column box third_category" id="products" style="display: none;">
@@ -1013,7 +1050,7 @@
                         <p>SKU</p>
                         <p>Action</p>
                     </div>
-                    <div class="values flex_row space_between center" id="product_details_table_stagger">
+                    <!-- <div class="values flex_row space_between center" id="product_details_table_stagger">
                         <div class="image flex_row center">
                             <span></span>
                         </div>
@@ -1092,7 +1129,8 @@
                             <button onclick="showDetails(event, 'product_details')"><img src="../images/edit_yellow.png" alt=""></button>
                             <button><img src="../images/delete_outline_black_24dp 1.png" alt=""></button>
                         </div>
-                    </div>
+                    </div> -->
+                    <div id="prodss"></div>
                 </div>
                 <!-- Sub-brands Table -->
                 <div class="appointments flex_column box" id="brands_table" style="display: none;">
@@ -1191,17 +1229,17 @@
                             <div class="half_input flex_row center space_between">
                                 <div class="input flex_column">
                                     <p>Image</p>
-                                    <div class="image" style="position: relative;">
+                                    <div class="image" style="margin-bottom: 1rem;">
                                         <img src="../images/hero image.png" alt="">
-                                        <img src="../images/close_black.png" alt="close" class="close" onclick="event.currentTarget.parentElement.remove();">
+                                        <img src="../images/close_black.png" alt="Close" onclick="event.currentTarget.parentElement.remove()" class="close">
                                     </div>
-                                    <div class="image" style="position: relative;">
+                                    <div class="image" style="margin-bottom: 1rem;">
                                         <img src="../images/hero image.png" alt="">
-                                        <img src="../images/close_black.png" alt="close" class="close" onclick="event.currentTarget.parentElement.remove();">
+                                        <img src="../images/close_black.png" alt="Close" onclick="event.currentTarget.parentElement.remove()" class="close">
                                     </div>
-                                    <div class="image" style="position: relative;">
+                                    <div class="image">
                                         <img src="../images/hero image.png" alt="">
-                                        <img src="../images/close_black.png" alt="close" class="close" onclick="event.currentTarget.parentElement.remove();">
+                                        <img src="../images/close_black.png" alt="Close" onclick="event.currentTarget.parentElement.remove()" class="close">
                                     </div>
                                 </div>
                                 <div class="input flex_row">
@@ -1234,6 +1272,16 @@
                                 <div class="input flex_column">
                                     <p>Items Left</p>
                                     <input type="text" placeholder="10" id="color_stock" style="width: 100%; margin: 0.5rem 0 0 0;">
+                                </div>
+                            </div>
+                            <div class="half_input flex_row center space_between final_categories">
+                                <div class="input flex_column">
+                                    <p>Subcategory</p>
+                                    <input type="text" placeholder="Rolling Tray" id="detail_subcategory" style="width: 100%; margin: 0.5rem 0 0 0;">
+                                </div>
+                                <div class="input flex_column">
+                                    <p>Final Category</p>
+                                    <input type="text" placeholder="Wooden Tray" id="detail_finalcategory" style="width: 100%; margin: 0.5rem 0 0 0;">
                                 </div>
                             </div>
                             <div class="buttons flex_row center">

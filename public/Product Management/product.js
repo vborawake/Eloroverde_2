@@ -1,7 +1,7 @@
 const popup = document.querySelector('.edit_category.flex_column');
 const details = document.querySelector('.details.popup.flex_column');
 const right_section = document.querySelector('.right_section.flex_column');
-var myInterval, myInterval1, myInterval2
+var myInterval, myInterval1, myInterval2, myInterval3, myInterval4, myInterval5, myInterval6
 // const BASE_URL = 'https://eloroverde-pjc5.onrender.com/' 
 
 document.addEventListener('click', () => {
@@ -23,29 +23,58 @@ function displayStock(e) {
     e.target.classList.add('active');
 }
 
-async function showDetails(e, element, val) {
-    // console.log(val);
+async function showDetails(e, element) {
     e.stopPropagation();
     if (element === 'edit_category') {
-        localStorage.setItem('ind', val.value)
-        var data = JSON.parse(localStorage.getItem('Category'));
-        document.getElementById('cate').value=data[parseInt(val.value)].name
-        document.getElementById('totpro').value=data[parseInt(val.value)].totalproduct
-        document.getElementById('stock').value=data[parseInt(val.value)].stock ? data[parseInt(val.value)].stock : 'Not Provided'
-        document.getElementById('sku').value=data[parseInt(val.value)].sku
-        document.getElementById('cateimg').value=data[parseInt(val.value)].image
-
         const element = document.querySelector('.edit_category.flex_column');
         element.style.display = 'flex';
         setTimeout(() => { element.style.transform = 'scale(1)'; });
         element.querySelector('h1').innerHTML = 'Edit Category';
         element.querySelector('.input.flex_column:nth-child(2) input').placeholder = e.currentTarget.parentElement.parentElement.querySelector('p:nth-child(2)').innerHTML;
+        if (document.querySelector('.main_category button#category') === e.currentTarget || e.currentTarget.parentElement.parentElement.parentElement.parentElement.classList.contains('main_category')) {
+            element.querySelector('h1').innerHTML = 'Edit Main Category';
+            element.querySelector('p:nth-child(1)').innerHTML = 'New Category Name';
+            element.querySelector('.category_name').style.display = 'none';
+            element.querySelector('.subcategory_name').style.display = 'none';
+        } else if (e.currentTarget.parentElement.parentElement.parentElement.classList.contains('first_subcategory')) {
+            element.querySelector('h1').innerHTML = 'Edit Subcategory';
+            element.querySelector('p:nth-child(1)').innerHTML = 'New Subcategory Name';
+            element.querySelector('.input .image_input').parentElement.style.display = 'none';
+            element.querySelector('.input .image_input').parentElement.insertAdjacentElement('beforebegin', element.querySelector('.category_name'));
+            element.querySelector('.category_name').style.display = 'flex';
+        } else {
+            element.querySelector('h1').innerHTML = 'Edit Subcategory';
+            element.querySelector('p:nth-child(1)').innerHTML = 'New Subcategory Name';
+            element.querySelector('.input .image_input').parentElement.style.display = 'block';
+            element.querySelector('.input .image_input').parentElement.insertAdjacentElement('beforebegin', element.querySelector('.category_name'));
+            element.querySelector('.input .image_input').parentElement.insertAdjacentElement('beforebegin', element.querySelector('.subcategory_name'));
+            element.querySelector('.category_name').style.display = 'flex';
+            element.querySelector('.subcategory_name').style.display = 'flex';
+        }
     } else if (element === 'add_category') {
         const element = document.querySelector('.edit_category.flex_column');
-        console.log(element,"EEEEEEEEEEEEE")
         element.style.display = 'flex';
         setTimeout(() => { element.style.transform = 'scale(1)'; });
-        element.querySelector('h1').innerHTML = 'Add Category';
+        if (document.querySelector('.main_category button#category') === e.currentTarget) {
+            element.querySelector('h1').innerHTML = 'Add Main Category';
+            element.querySelector('p:nth-child(1)').innerHTML = 'New Category Name';
+            element.querySelector('.category_name').style.display = 'none';
+            element.querySelector('.subcategory_name').style.display = 'none';
+        } else if (document.querySelector('.first_subcategory button') === e.currentTarget || document.querySelector('#packs_tab').classList.contains('active')) {
+            element.querySelector('h1').innerHTML = 'Add Subcategory';
+            element.querySelector('p:nth-child(1)').innerHTML = 'New Subcategory Name';
+            element.querySelector('.input .image_input').parentElement.style.display = 'none';
+            element.querySelector('.input .image_input').parentElement.insertAdjacentElement('beforebegin', element.querySelector('.category_name'));
+            element.querySelector('.category_name').style.display = 'block';
+        } else {
+            element.querySelector('h1').innerHTML = 'Add Subcategory';
+            element.querySelector('p:nth-child(1)').innerHTML = 'New Subcategory Name';
+            element.querySelector('.input .image_input').parentElement.style.display = 'block';
+            element.querySelector('.input .image_input').parentElement.insertAdjacentElement('beforebegin', element.querySelector('.category_name'));
+            element.querySelector('.input .image_input').parentElement.insertAdjacentElement('beforebegin', element.querySelector('.subcategory_name'));
+            element.querySelector('.category_name').style.display = 'block';
+            element.querySelector('.subcategory_name').style.display = 'block';
+        }
     } else if (element === 'category') {
         // Show first sub category
         const productDetails = document.querySelector('#products');
@@ -55,6 +84,8 @@ async function showDetails(e, element, val) {
         productDetails.previousElementSibling.style.display = 'none';
         // Show first subcategory screen
         productDetails.style.display = 'flex';
+        // Change name of button
+        document.querySelector('.first_subcategory button').innerHTML = 'Add New Subcategory';
         // Animation
         gsap.from('.first_subcategory #product_details_table_stagger', {
             y: '-2rem',
@@ -131,6 +162,8 @@ async function showDetails(e, element, val) {
         document.querySelector('.second_category').style.display = 'flex';
         // Set name of category to header
         document.querySelector('.second_category h1').innerHTML = `Back &gt; List Of ${ e.currentTarget.innerText } Products`;
+        // Change name of button
+        document.querySelector('.second_category button').innerHTML = 'Add New Subcategory';
         // Animate
         gsap.from('.second_category #product_details_table_stagger', {
             y: '-2rem',
@@ -155,19 +188,25 @@ async function showDetails(e, element, val) {
         // Hide everything on screen
         Array.from(right_section.children).forEach(child => { child.style.display = 'none' });
         // If User has clicked on add new product button
-        if (e.currentTarget.innerText === 'Add New Product' || e.currentTarget.innerText === 'Add New Virals') document.querySelector('.details.popup').querySelector('.header p').innerHTML = 'Back &gt; Add Product';
+        if (e.currentTarget.innerText === 'Add New Product' || e.currentTarget.innerText === 'Add New Virals') {
+            document.querySelector('.details.popup').querySelector('.header p').innerHTML = 'Back &gt; Add Product';
+            document.querySelector('.final_categories').style.display = 'none';
+            if (document.getElementById('products_tab').classList.contains('active') || document.getElementById('packs_tab').classList.contains('active')) document.querySelector('.final_categories').style.display = 'flex';
+        }
         // If user has clicked on edit product button (yellow pencil)
         else {
             document.querySelector('.details.popup').querySelector('.header p').innerHTML = 'Back &gt; Edit Product';
             // For products table
-            if (e.currentTarget.parentElement.parentElement.parentElement.id === 'products') {
+            if (document.getElementById('products_tab').classList.contains('active') || document.getElementById('packs_tab').classList.contains('active')) {
                 document.querySelector('#name').value = e.currentTarget.parentElement.parentElement.querySelector('p:nth-child(2)').innerHTML;
                 document.querySelector('#sku').value = e.currentTarget.parentElement.parentElement.querySelector('p:nth-child(6)').innerHTML;
                 document.querySelector('#purchase_price').value = e.currentTarget.parentElement.parentElement.querySelector('p:nth-child(5)').innerHTML;
                 document.querySelector('#details').value = e.currentTarget.parentElement.parentElement.querySelector('.product_detail p').innerHTML;
+                document.querySelector('.final_categories').style.display = 'flex';
             } else {
                 // For brands table
                 document.querySelector('#name').value = e.currentTarget.parentElement.parentElement.querySelector('p:nth-child(2)').innerHTML;
+                document.querySelector('.final_categories').style.display = 'none';
             }
         }
         // Show edit product / edit brand screen
@@ -224,6 +263,8 @@ async function showDetails(e, element, val) {
         setTimeout(() => { element.style.transform = 'scale(1)'; });
         element.querySelector('h1').innerHTML = 'Add Brand';
         document.querySelector('#image_input').style.display = 'none';
+        if (document.querySelector('.main_category button#brands') === e.currentTarget) element.querySelector('h1').innerHTML = 'Add Main Category';
+        else element.querySelector('h1').innerHTML = 'Add Subcategory';
         // If user clicks on yellow pencil button then change the title to Edit brand
         if (e.currentTarget.parentElement.classList.contains('action')) {
             element.querySelector('h1').innerHTML = 'Edit Brand';
@@ -236,6 +277,9 @@ async function showDetails(e, element, val) {
         setTimeout(() => { element.style.transform = 'scale(1)'; });
         element.querySelector('h1').innerHTML = 'Add Pack';
         element.querySelector('#image_input').style.display = 'none';
+        // If user is on main categories page change title of popup to Add main category else change it to Add subcategory
+        if (document.querySelector('.main_category button#packs') === e.currentTarget) element.querySelector('h1').innerHTML = 'Add Main Category';
+        else element.querySelector('h1').innerHTML = 'Add Subcategory';
         // If user clicks on yellow pencil button then change the title to Edit Pack
         if (e.currentTarget.parentElement.classList.contains('action')) {
             element.querySelector('h1').innerHTML = 'Edit Pack';
@@ -468,6 +512,26 @@ function goes2() {
     return myInterval2
 }
 
+function goes3() {
+    myInterval3 = setInterval(setsSubCatWithData, 1000);
+    return myInterval3
+}
+
+function goes4() {
+    myInterval4 = setInterval(setsProWithData, 1000);
+    return myInterval4
+}
+
+function goe1() {
+    myInterval5 = setInterval(setsPacks, 1000);
+    return myInterval5
+}
+
+function goe2() {
+    myInterval6 = setInterval(setsVirals, 1000);
+    return myInterval6
+}
+
 function sets() {
     localStorage.removeItem('propage')
     var text = "";
@@ -494,20 +558,154 @@ function sets() {
     }
 }
 
+function setsPacks() {
+    var text = "";
+    var data = JSON.parse(localStorage.getItem('Packs'));
+    if (data.length != 0) {
+        for (var i = 0; i < data.length; i++) {
+            text = text + `<div class="values flex_row space_between center" id="pack_table_stagger">
+            <div class="image flex_row center">
+                <img src="data:image/png;base64, ${data[i].image}" alt="">
+            </div>
+            <p value="${i}" onclick="showDetails(event, 'second_category')">${data[i].name}</p>
+            <p>1</p>
+            <p id="success">${data[i].stock}</p>
+            <p>${data[i].totalproduct}</p>
+            <div class="action flex_row space_between center">
+                <button value="${data[i]._id}" onclick="showDetails(event, 'add_pack')"><img src="../images/edit_yellow.png" alt=""></button>
+                <button><img src="../images/delete_outline_black_24dp 1.png" alt=""></button>
+            </div>
+            </div>`+ '\n'
+            }
+            console.log(text, "TTTTTTTTTTTTTTTT");
+            document.getElementById("packks").innerHTML = text;
+            clearInterval(myInterval5);
+    }
+}
+
+function setsVirals() {
+    var text = "";
+    var data = JSON.parse(localStorage.getItem('Virals'));
+    if (data.length != 0) {
+        for (var i = 0; i < data.length; i++) {
+            text = text + `<div class="values flex_row space_between center" id="virals_table_stagger">
+            <div class="image flex_row center">
+                <img src="data:image/png;base64, ${data[i].image}" alt="">
+            </div>
+            <p>${data[i].product_name}</p>
+            <p>${data[i].views}</p>
+            <p id="success">${data[i].stock}</p>
+            <p>${i+1}</p>
+            <div class="action flex_row space_between center">
+                <button onclick="showDetails(event, 'product_details')"><img src="../images/edit_yellow.png" alt=""></button>
+                <button><img src="../images/delete_outline_black_24dp 1.png" alt=""></button>
+            </div>
+            </div>`+ '\n'
+            }
+            console.log(text, "TTTTTTTTTTTTTTTT");
+            document.getElementById("vir").innerHTML = text;
+            clearInterval(myInterval6);
+    }
+}
+
 function setsCatWithData() {
     var data = JSON.parse(localStorage.getItem('CategoryWithData'));
     console.log(data,"DDDDDDDDDDDDD");
-    // if (data.length != 0) {
-    //     for (var i = 0; i < data.length; i++) {
-            
-    //     }
-    //     // console.log(text, "TTTTTTTTTTTTTTTT");
-        clearInterval(myInterval2);
-    // }
+    clearInterval(myInterval2);
+}
+
+function SubCatWithData(id) {
+    var data = JSON.parse(localStorage.getItem('Login'));
+    Gets(
+        {
+            method: 'GET',
+            urls: `products/subcategorywithdata/${id}`,
+            headerss: {
+                'Content-Type': 'application/json',
+                'authorization': 'Bearer '+data.token
+            },
+            actions: '',
+            saving: 'SubCategoryWithData'
+        }
+    );
+    goes3();
+}
+
+function ProWithData(id) {
+    var data = JSON.parse(localStorage.getItem('Login'));
+    Gets(
+        {
+            method: 'GET',
+            urls: `products/productsbyid/${id}`,
+            headerss: {
+                'Content-Type': 'application/json',
+                'authorization': 'Bearer '+data.token
+            },
+            actions: '',
+            saving: 'ProductsWithData'
+        }
+    );
+    goes4();
+}
+
+function setsSubCatWithData() {
+    var text = "";
+    var data = JSON.parse(localStorage.getItem('SubCategoryWithData'));
+    if (data.data.subcategorys.length != 0) {
+        for (var i = 0; i <data.data.subcategorys.length; i++) {
+            text = text + `<div class="values flex_row space_between center" id="product_details_table_stagger">
+            <div class="image flex_row center">
+                <img src="data:image/png;base64, ${data.data.subcategorys[i].image}">
+            </div>
+            <p value="${data.data.subcategorys[i]._id}" onclick="{setProData(this);showDetails(event, 'third_category')}">${data.data.subcategorys[i].name}</p>
+            <p>1</p>
+            <div class="product_detail">
+                <p>Lorem, ipsum.</p>
+            </div>
+            <p>€ 20</p>
+            <p id="success">In Stock</p>
+            <p>#2056</p>
+            <div class="action flex_row space_between center">
+                <button value="${i}" onclick="showDetails(event, 'edit_category')"><img src="../images/edit_yellow.png" alt=""></button>
+                <button value="${i}" onclick="showDetails(event, 'edit_category')"><img src="../images/delete_outline_black_24dp 1.png" alt=""></button>
+            </div>
+            </div>`+ '\n'
+            }
+            console.log(text, "TTTTTTTTTTTTTTTT");
+            document.getElementById("subcatss").innerHTML = text;
+            clearInterval(myInterval3);
+    }
+}
+
+function setsProWithData() {
+    var text = "";
+    var data = JSON.parse(localStorage.getItem('ProductsWithData'));
+    if (data.products.length != 0) {
+        for (var i = 0; i <data.products.length; i++) {
+            text = text + `<div class="values flex_row space_between center" id="product_details_table_stagger">
+            <div class="image flex_row center">
+                <img src="data:image/png;base64, ${data.products[i].image}">
+            </div>
+            <p>${data.products[i].name}</p>
+            <div class="product_detail">
+                <p>${data.products[i].description}</p>
+            </div>
+            <p>${data.products[i].purchaseprice}</p>
+            <p id="success">In Stock</p>
+            <p>#${data.products[i].sku}</p>
+            <div class="action flex_row space_between center">
+                <button value="${data.products[i]._id}" onclick="showDetails(event, 'product_details')"><img src="../images/edit_yellow.png" alt=""></button>
+                <button value="${data.products[i]._id}"><img src="../images/delete_outline_black_24dp 1.png" alt=""></button>
+            </div>
+            </div>`+ '\n'
+            }
+            console.log(text, "TTTTTTTTTTTTTTTT");
+            document.getElementById("prodss").innerHTML = text;
+            clearInterval(myInterval4);
+    }
 }
 
 function setCatData(val) {
-    
     var ind = parseInt(val.getAttribute('value'));
     var data = JSON.parse(localStorage.getItem('Category'));
     var data1 = JSON.parse(localStorage.getItem('CategoryWithData'));
@@ -526,7 +724,7 @@ function setCatData(val) {
                     <div class="image flex_row center">
                         <span></span>
                     </div>
-                    <p onclick="showDetails(event, 'second_category')">${data1.data[i].subcategory[j].name}</p>
+                    <p value=${[i, j]} onclick="{showDetails(event, 'second_category');setSubDatass(event, 'add_brand', this)}">${data1.data[i].subcategory[j].name}</p>
                     <p>1</p>
                     <div class="product_detail">
                         <p>Lorem, ipsum.</p>
@@ -925,4 +1123,21 @@ async function setSubData(event, title, val) {
     localStorage.setItem('brandind', ind);
     var data = JSON.parse(localStorage.getItem('CategoryWithData'));
     document.getElementById('bradname').value = data.data[val.value[0]].subcategory[val.value[1]].name
+}
+
+async function setSubDatass(event, title, val) {
+    var inds = val.getAttribute('value').split(',');
+    console.log(event, val, inds[0], inds[1], "DDDDDDDDDD");
+    // var ind = parseInt(val.value);
+    // localStorage.setItem('brandind', ind);
+    var data = JSON.parse(localStorage.getItem('CategoryWithData'));
+    console.log(data.data[inds[0]].subcategory, data.data[inds[0]].subcategory[inds[1]].name)
+    SubCatWithData(data.data[inds[0]].subcategory[inds[1]]._id)
+}
+
+async function setProData(val) {
+    console.log(val);
+    var inds = val.getAttribute('value');
+    console.log(event, val, "DDDDDDDDDD");
+    ProWithData(inds)
 }
