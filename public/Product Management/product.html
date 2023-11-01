@@ -13,66 +13,8 @@
 </head>
 <body onload="{
     var data = JSON.parse(localStorage.getItem('Login'));
-    javascript:Gets(
-    {
-        method: 'GET',
-        urls: 'products/category',
-        headerss: {
-            'Content-Type': 'application/json',
-            'authorization': 'Bearer '+data.token
-        },
-        actions: '',
-        saving: 'Category'
-    }
-    );
-    Gets(
-    {
-        method: 'GET',
-        urls: 'products/brands',
-        headerss: {
-            'Content-Type': 'application/json',
-            'authorization': 'Bearer '+data.token
-        },
-        actions: '',
-        saving: 'Brand'
-    }
-    );
-    Gets(
-    {
-        method: 'GET',
-        urls: 'products/categorywithdata',
-        headerss: {
-            'Content-Type': 'application/json',
-            'authorization': 'Bearer '+data.token
-        },
-        actions: '',
-        saving: 'CategoryWithData'
-    }
-    );
-    Gets(
-    {
-        method: 'GET',
-        urls: 'products/packs',
-        headerss: {
-            'Content-Type': 'application/json',
-            'authorization': 'Bearer '+data.token
-        },
-        actions: '',
-        saving: 'Packs'
-    }
-    );
-    Gets(
-    {
-        method: 'GET',
-        urls: 'products/virals',
-        headerss: {
-            'Content-Type': 'application/json',
-            'authorization': 'Bearer '+data.token
-        },
-        actions: '',
-        saving: 'Virals'
-    }
-    );
+    javascript:
+    change();
     goes();
     goes1();
     goes2();
@@ -134,7 +76,7 @@
                     </div>
                 </div>
             </div>
-            <div class="sidebar flex_column">
+            <!-- <div class="sidebar flex_column">
                 <img src="../images/logo.png">
                 <ul>
                     <li class="flex_column justify_center">
@@ -213,7 +155,10 @@
                         <img src="../images/logout.png" alt="">
                     </div>
                 </div>
-            </div>
+            </div> -->
+
+            <div id="sides"></div>
+
             <div class="right_section flex_column">
                 <!-- Edit Category Popup -->
                 <div class="edit_category flex_column" style="display: none;">
@@ -234,9 +179,9 @@
                         <div class="select" style="width: 100%; z-index: 2;">
                             <p class="selected_item flex_column justify_center" id="stock">In Stock</p>
                             <div class="select_menu flex_column">
-                                <p class="item flex_column justify_center">In Stock</p>
-                                <p class="item flex_column justify_center">Low In Stock</p>
-                                <p class="item flex_column justify_center">Out Of Stock</p>
+                                <p class="item flex_column justify_center" onclick="document.getElementById('stock').innerHTML = 'In Stock'">In Stock</p>
+                                <p class="item flex_column justify_center" onclick="document.getElementById('stock').innerHTML = 'Low In Stock'">Low In Stock</p>
+                                <p class="item flex_column justify_center" onclick="document.getElementById('stock').innerHTML = 'Out Of Stock'">Out Of Stock</p>
                             </div>
                         </div>
                         <!-- <input type="text" placeholder="Male"> -->
@@ -248,7 +193,7 @@
                     <div class="input flex_column">
                         <p>Image</p>
                         <div class="image_input">
-                            <input type="text" placeholder="Choose File">
+                            <input type="text" placeholder="Choose File" disabled>
                             <div class="file_input flex_row justify_center center">
                                 <input type="file" name='inputfile' onChange='getFileNameWithExt(event)'>
                                 <img src="../images/file_download_black.png" alt="" id="cateimg">
@@ -257,11 +202,17 @@
                     </div>
                     <div class="input flex_column category_name" style="display: none;">
                         <p>Category</p>
-                        <input type="text" placeholder="Seeds" id="sku" style="width: 100%;">
+                        <p hidden id="catind"></p>
+                        <p hidden id="catid"></p>
+                        <input type="text" placeholder="Seeds" id="catss" style="width: 100%;" disabled>
                     </div>
                     <div class="input flex_column subcategory_name" style="display: none;">
                         <p>Subcategory</p>
-                        <input type="text" placeholder="Wooden Tray" id="sku" style="width: 100%;">
+                        <p hidden id="subcatind"></p>
+                        <p hidden id="subcatid"></p>
+                        <p hidden id="subscatind"></p>
+                        <p hidden id="subscatid"></p>
+                        <input type="text" placeholder="Wooden Tray" id="subcatss" style="width: 100%;" disabled>
                     </div>
                     <div class="buttons flex_row center">
                         <button id="sub" onclick="EditProduct()">Submit</button>
@@ -302,7 +253,7 @@
                     <div class="input flex_column">
                         <p>Image</p>
                         <div class="image_input">
-                            <input type="text" placeholder="Choose File">
+                            <input type="text" placeholder="Choose File" disabled>
                             <div class="file_input flex_row justify_center center">
                                 <input type="file" onChange='BrandImg(event)'>
                                 <img src="../images/file_download_black.png" alt="" id="bradimg">
@@ -423,7 +374,7 @@
                 <!-- Page header -->
                 <div class="header flex_row center space_between" id="stagger">
                     <div class="header_left_section flex_column">
-                        <h1>Product Management</h1>
+                        <h1 id="pro_m">Product Management</h1>
                     </div>
                     <div class="header_right_section flex_row center" onclick="showPopup(event)">
                         <div class="search flex_row center">
@@ -433,29 +384,30 @@
                         <div class="image">
                             <img src="../images/profile.png" alt="profile image">
                         </div>
-                        <p id="username">John</p>
+                        <p id="username">Admin</p>
                     </div>
                 </div>
                 <!-- Main product and brand categories table -->
                 <div class="appointments flex_column box main_category" id="stagger">
                     <!-- Main product categories -->
                     <div class="appointments_header flex_row center space_between" id="product_table_stagger">
-                        <div class="appointments_header_left flex_row center">
-                            <h1 id="products_tab" onclick="showDetails(event, 'products')" class="active">Product Category</h1>
+                        <div class="appointments_header_left flex_row center" id="appo">
+                            <!-- <h1 id="products_tab" onclick="showDetails(event, 'products')" class="active">Product Category</h1>
                             <h1 id="brands_tab" onclick="showDetails(event, 'brands')">Brands</h1>
                             <h1 id="packs_tab" onclick="showDetails(event, 'packs')">Packs</h1>
-                            <h1 id="virals_tab" onclick="showDetails(event, 'virals')">Virals</h1>
+                            <h1 id="virals_tab" onclick="showDetails(event, 'virals')">Virals</h1> -->
                         </div>
-                        <div class="appointments_header_right flex_row center">
-                            <button onclick="showDetails(event, 'add_category')" id="category">Add New Category</button>
+                        <div class="appointments_header_right flex_row center" id="addnew">
+                            <!-- <button onclick="showDetails(event, 'add_category')" id="category">Add New Category</button>
                             <button onclick="showDetails(event, 'add_brand')" id="brands" style="display: none;">Add New Brands</button>
                             <button onclick="showDetails(event, 'add_pack')" id="packs" style="display: none;">Add New Pack</button>
-                            <button onclick="showDetails(event, 'product_details')" id="virals" style="display: none;">Add New Virals</button>
+                            <button onclick="showDetails(event, 'product_details')" id="virals" style="display: none;">Add New Virals</button> -->
                         </div>
                     </div>
                     <div class="products width_full">
                         <div class="header flex_row space_between center" id="product_table_stagger">
-                            <p>Image</p>
+                            <div class="flex_row space_between center" id="pro_h" style="width: 100%">
+                            <!-- <p>Image</p>
                             <div class="flex_row center justify_center">
                                 <p>Category</p>
                                 <button><img src="../images/sort.png" alt=""></button>
@@ -463,7 +415,8 @@
                             <p># of Products</p>
                             <p>Stock</p>
                             <p>SKU</p>
-                            <p>Action</p>
+                            <p>Action</p> -->
+                            </div>
                         </div>
                         <!-- <div class="values flex_row space_between center" id="product_table_stagger">
                             <div class="image flex_row center">
@@ -1033,7 +986,7 @@
                             <button><img src="../images/delete_outline_black_24dp 1.png" alt=""></button>
                         </div>
                     </div> -->
-                    <div id="subcatss"></div>
+                    <div id="subcatsss"></div>
                 </div>
                 <!-- Third Subcategory -->
                 <div class="appointments flex_column box third_category" id="products" style="display: none;">
@@ -1229,15 +1182,15 @@
                             <div class="half_input flex_row center space_between">
                                 <div class="input flex_column">
                                     <p>Image</p>
-                                    <div class="image" style="margin-bottom: 1rem;">
+                                    <div class="image flex_row" style="margin-bottom: 1rem;">
                                         <img src="../images/hero image.png" alt="">
                                         <img src="../images/close_black.png" alt="Close" onclick="event.currentTarget.parentElement.remove()" class="close">
                                     </div>
-                                    <div class="image" style="margin-bottom: 1rem;">
+                                    <div class="image flex_row" style="margin-bottom: 1rem;">
                                         <img src="../images/hero image.png" alt="">
                                         <img src="../images/close_black.png" alt="Close" onclick="event.currentTarget.parentElement.remove()" class="close">
                                     </div>
-                                    <div class="image">
+                                    <div class="image flex_row">
                                         <img src="../images/hero image.png" alt="">
                                         <img src="../images/close_black.png" alt="Close" onclick="event.currentTarget.parentElement.remove()" class="close">
                                     </div>
@@ -1284,57 +1237,44 @@
                                     <input type="text" placeholder="Wooden Tray" id="detail_finalcategory" style="width: 100%; margin: 0.5rem 0 0 0;">
                                 </div>
                             </div>
-                            <div class="half_input flex_row center space_between">
-                                <div class="input flex_column">
-                                    <p>Brand</p>
-                                    <div class="select" style="width: 100%; z-index: 2;">
-                                        <p class="selected_item flex_column justify_center" id="category">CBD</p>
-                                        <div class="select_menu flex_column">
-                                            <p class="item flex_column justify_center">CBD</p>
-                                            <p class="item flex_column justify_center">Acti Tube</p>
-                                            <p class="item flex_column justify_center">OO Seeds</p>
-                                            <p class="item flex_column justify_center">Aero Spaced</p>
-                                            <p class="item flex_column justify_center">Aleda</p>
-                                            <p class="item flex_column justify_center">Backwoods</p>
-                                            <p class="item flex_column justify_center">Others</p>
-                                        </div>
-                                    </div>
-                                    <!-- <input type="text" placeholder="Male"> -->
-                                </div>
-                            </div>
                             <div class="buttons flex_row center">
-                                <button>Submit</button>
+                                <button onclick="EditProduct()">Submit</button>
                                 <button>Cancel</button>
                             </div>
                         </div>
-                    </div>
+                    </div>                    
                 </div>
             </div>
+            <p id="error_text" style="display: none; z-index: 100; position: fixed; background: #CD0508; color: #FFF; padding: 0.3rem; width: fit-content;"></p>
         </div>
         <div class="menu flex_column" id="menu">
             <div class="item flex_row center" onclick="window.location.href = '../Profile/profile.html'">
                 <img src="../images/account_circle_green.png" alt="">
                 <p>Profile</p>
             </div>
-            <div class="item flex_row center" onclick="window.location.href = '../Profile/profile.html'; localStorage.setItem('password', 'true')">
+            <!-- <div class="item flex_row center" onclick="window.location.href = '../Profile/profile.html'; localStorage.setItem('password', 'true')">
                 <img src="../images/password_green.png" alt="">
                 <p>Change Password</p>
             </div>
             <div class="item flex_row center" onclick="window.location.href = '../Notification Settings/settingsAdmin.html'">
                 <img src="../images/notifications_green.png" alt="">
                 <p>Notification Settings</p>
-            </div>
+            </div> -->
             <div class="item flex_row center" onclick="window.location.href = '../Login/login.html'">
                 <img src="../images/logout_green.png" alt="">
                 <p>Logout</p>
             </div>
         </div>
         <div class="menu flex_column" id="language">
-            <div class="item flex_row center" onclick="window.location.href = '../Profile/profile.html'">
+            <div class="item flex_row center" 
+                onclick="ChangeAll('english');change();"
+            >
                 <img src="../images/great_britain.png" alt="">
                 <p>English</p>
             </div>
-            <div class="item flex_row center" onclick="window.location.href = '../Profile/profile.html'; localStorage.setItem('password', 'true')">
+            <div class="item flex_row center" 
+                onclick="ChangeAll('spanish');change();"
+            >
                 <img src="../images/spain.png" alt="">
                 <p>Spanish</p>
             </div>

@@ -6,6 +6,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.3.0/chart.umd.js" integrity="sha512-CMF3tQtjOoOJoOKlsS7/2loJlkyctwzSoDK/S40iAB+MqWSaf50uObGQSk5Ny/gfRhRCjNLvoxuCvdnERU4WGg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script defer src="dashboard.js"></script>
     <script defer src="../pagination.js"></script>
+    <script defer type="text/javascript" src="../rest_apis.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" integrity="sha512-16esztaSRplJROstbIIdwX3N97V1+pZvV33ABoG1H2OyTttBxEGkTsoIVsiP1iaTtM8b3+hu2kB6pQ4Clr5yug==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="dashboard.css">
     <link rel="stylesheet" href="../helper.css">
@@ -13,7 +14,11 @@
 </head>
 <body onload="{
     var data = JSON.parse(localStorage.getItem('Login'));
-    javascript: getProfile(data)
+    javascript: 
+    goes1();
+    change();
+    grace();
+    getProfile(data);
     }">
     <div class="container flex_column">
         <div class="content_wrapper flex_row width_full">
@@ -69,7 +74,7 @@
                     </div>
                 </div>
             </div>
-            <div class="sidebar flex_column">
+            <!-- <div id="sides" class="sidebar flex_column">
                 <img src="../images/logo.png">
                 <ul>
                     <li class="active flex_column justify_center">
@@ -148,12 +153,15 @@
                         <img src="../images/logout.png" alt="">
                     </div>
                 </div>
-            </div>
-            <div class="right_section flex_column">
+            </div> -->
+            
+            <div id="sides"></div>
+
+            <div id="mainss" class="right_section flex_column">
                 <div class="header flex_row center space_between" id="stagger">
-                    <div class="header_left_section flex_column">
-                        <h1>Welcome Back, <span id="username">John</span></h1>
-                        <p>Here is what happening with your store today !</p>
+                    <div class="header_left_section flex_column" id="welc">
+                        <!-- <h1>${Langs.welcome}, <span id="username">Admin</span></h1>
+                        <p>${Langs.here}</p> -->
                     </div>
                     <div class="header_right_section flex_row center" onclick="showPopup(event)">
                         <div class="search flex_row center">
@@ -163,14 +171,14 @@
                         <div class="image">
                             <img src="../images/profile.png" alt="profile image">
                         </div>
-                        <p id="name">John</p>
+                        <p id="name">Admin</p>
                     </div>
                 </div>
-                <div class="stats flex_row space_between" id="stagger">
-                    <div class="stat flex_column space_evenly" id="stat_stagger">
+                <div class="stats flex_row space_between" id="stagger" name="tot">
+                    <!-- <div class="stat flex_column space_evenly" id="stat_stagger">
                         <div class="top_row flex_row center">
                             <img src="../images/sales.png" alt="sales">
-                            <p>Total Sales</p>
+                            <p>${Langs.total}</p>
                         </div>
                         <div class="bottom_row flex_row space_between center">
                             <p>€ 2224.90</p>
@@ -180,7 +188,7 @@
                     <div class="stat flex_column space_evenly" id="stat_stagger">
                         <div class="top_row flex_row center">
                             <img src="../images/unique_visitor.png" alt="sales">
-                            <p>Visitors</p>
+                            <p>${Langs.visitors}</p>
                         </div>
                         <div class="bottom_row flex_row space_between center">
                             <p>25632</p>
@@ -190,7 +198,7 @@
                     <div class="stat flex_column space_evenly" id="stat_stagger">
                         <div class="top_row flex_row center">
                             <img src="../images/box.png" alt="sales">
-                            <p>Orders</p>
+                            <p>${Langs.orders}</p>
                         </div>
                         <div class="bottom_row flex_row space_between center">
                             <p>2000</p>
@@ -200,40 +208,40 @@
                     <div class="stat flex_column space_evenly" id="stat_stagger">
                         <div class="top_row flex_row center">
                             <img src="../images/unit.png" alt="sales">
-                            <p>Units Sold</p>
+                            <p>${Langs.unit}</p>
                         </div>
                         <div class="bottom_row flex_row space_between center">
                             <p>1236</p>
                             <img src="../images/sales_icon.png" alt="">
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="chart_section flex_row space_between" id="stagger">
                     <div class="area_chart box flex_column align_flex_start" id="chart_stagger">
-                        <div class="header flex_row space_between center width_full">
-                            <h1>Revenue Vs Order</h1>
+                        <div class="header flex_row space_between center width_full" id="renv">
+                            <!-- <h1>${Langs.revenue}</h1>
                             <div class="date_picker flex_row space_between center">
                                 <p>2023</p>
                                 <svg width="24" height="24" viewBox="0 0 15 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M13.0417 2H12.25V0H10.6667V2H4.33333V0H2.75V2H1.95833C1.07958 2 0.382917 2.9 0.382917 4L0.375 18C0.375 19.1 1.07958 20 1.95833 20H13.0417C13.9125 20 14.625 19.1 14.625 18V4C14.625 2.9 13.9125 2 13.0417 2ZM13.0417 18H1.95833V8H13.0417V18ZM5.125 12H3.54167V10H5.125V12ZM8.29167 12H6.70833V10H8.29167V12ZM11.4583 12H9.875V10H11.4583V12ZM5.125 16H3.54167V14H5.125V16ZM8.29167 16H6.70833V14H8.29167V16ZM11.4583 16H9.875V14H11.4583V16Z" fill="#9699A0"/>
                                 </svg>
                                 <input type="date" name="" id="">
-                            </div>
+                            </div> -->
                         </div>
                         <canvas id="line"></canvas>
                     </div>
                     <div class="doughnut_chart box flex_column align_flex_start" id="chart_stagger">
                         <div class="header flex_row space_between center width_full">
-                            <h1>Sale By Category</h1>
+                            <h1 id="sal">${Langs.sales}</h1>
                         </div>
                         <canvas id="doughnut"></canvas>
                         <!-- <p id="summary">Total 212</p> -->
                     </div>
                 </div>
                 <div class="bar_area flex_row space_between" id="stagger">
-                    <div class="bar flex_column box" id="chart_stagger">
+                    <div id="conv" class="bar flex_column box" id="chart_stagger">
                         <div class="header flex_row space_between center width_full">
-                            <h1>Conversions (Cart -to-Buy)</h1>
+                            <h1>${Langs.conversions}</h1>
                             <div class="date_picker flex_row space_between center">
                                 <p>May 2023</p>
                                 <svg width="24" height="24" viewBox="0 0 15 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -246,87 +254,12 @@
                     </div>
                     <div class="table_wrapper flex_column box" id="chart_stagger">
                         <div class="table_header flex_row center space_between">
-                            <h1>Raffel Winners</h1>
+                            <h1 id="raff">${Langs.raffel}</h1>
                             <a href="#">
                                 <p style="cursor: pointer;" onclick="window.location.href='../Wheel And Games/wheel_games.html'">See All</p>
                             </a>
                         </div>
-                        <div class="value flex_row center space_between">
-                            <div class="left_section flex_row center">
-                                <div class="image"></div>
-                                <div class="text flex_column">
-                                    <p>Mathew J</p>
-                                    <div class="reward flex_row center">
-                                        <p>Prize Won <span id="prize">10% off on Rolling Tray</span></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="right_section">
-                                <div class="text flex_column space_between">
-                                    <p id="date">Tue, 28 Jun 2023</p>
-                                    <a href="#">
-                                        <p>More --&gt;</p>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="value flex_row center space_between">
-                            <div class="left_section flex_row center">
-                                <div class="image"></div>
-                                <div class="text flex_column">
-                                    <p>Mathew J</p>
-                                    <div class="reward flex_row center">
-                                        <p>Prize Won <span id="prize">10% off on Rolling Tray</span></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="right_section">
-                                <div class="text flex_column space_between">
-                                    <p id="date">Tue, 28 Jun 2023</p>
-                                    <a href="#">
-                                        <p>More --&gt;</p>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="value flex_row center space_between">
-                            <div class="left_section flex_row center">
-                                <div class="image"></div>
-                                <div class="text flex_column">
-                                    <p>Mathew J</p>
-                                    <div class="reward flex_row center">
-                                        <p>Prize Won <span id="prize">10% off on Rolling Tray</span></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="right_section">
-                                <div class="text flex_column space_between">
-                                    <p id="date">Tue, 28 Jun 2023</p>
-                                    <a href="#">
-                                        <p>More --&gt;</p>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="value flex_row center space_between">
-                            <div class="left_section flex_row center">
-                                <div class="image"></div>
-                                <div class="text flex_column">
-                                    <p>Mathew J</p>
-                                    <div class="reward flex_row center">
-                                        <p>Prize Won <span id="prize">10% off on Rolling Tray</span></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="right_section">
-                                <div class="text flex_column space_between">
-                                    <p id="date">Tue, 28 Jun 2023</p>
-                                    <a href="#">
-                                        <p>More --&gt;</p>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+                    <div id="datass"></div>
                     </div>
                 </div>
                 <div class="order_details flex_column" id="stagger">
@@ -334,96 +267,36 @@
                         <p>Recent Orders</p>
                         <p style="cursor: pointer;" onclick="window.location.href = '../Orders/orders.html'">See All</p>
                     </div>
-                    <div class="table_header flex_row space_between center">
-                        <p>#</p>
-                        <p>Name</p>
-                        <p>Address</p>
-                        <p>Quantity</p>
-                        <p>Order Amount</p>
-                        <p>Status</p>
-                        <p>Action</p>
+                    <div id="catnam" class="table_header flex_row space_between center">
+                        <!-- <p>#</p>
+                        <p>${Langs.name}</p>
+                        <p>${Langs.address}</p>
+                        <p>${Langs.quantity}</p>
+                        <p>${Langs.order_amount}</p>
+                        <p>${Langs.status}</p>
+                        <p>${Langs.action}</p> -->
                     </div>
-                    <div class="value flex_row space_between center">
-                        <div class="image">
-                            <span></span>
-                        </div>
-                        <p>Lorem, ipsum.</p>
-                        <p>Avda. 1º de Mayo...,Spain</p>
-                        <p>2</p>
-                        <p>$ 2548</p>
-                        <div class="text flex_column center">
-                            <p id="success">Paid</p>
-                            <p id="success">Delivered</p>
-                        </div>
-                        <div class="action flex_row space_between center">
-                            <button><img src="../images/file_download_black.png" alt=""></button>
-                            <button><img src="../images/delete_outline_black_24dp 1.png" alt=""></button>
-                        </div>
-                    </div>
-                    <div class="value flex_row space_between center">
-                        <div class="image">
-                            <span></span>
-                        </div>
-                        <p>Lorem, ipsum.</p>
-                        <p>Avda. 1º de Mayo...,Spain</p>
-                        <p>2</p>
-                        <p>$ 2548</p>
-                        <div class="text flex_column center">
-                            <p id="success">Paid</p>
-                            <p id="success">Delivered</p>
-                        </div>
-                        <div class="action flex_row space_between center">
-                            <button><img src="../images/file_download_black.png" alt=""></button>
-                            <button><img src="../images/delete_outline_black_24dp 1.png" alt=""></button>
-                        </div>
-                    </div>
-                    <div class="value flex_row space_between center">
-                        <div class="image">
-                            <span></span>
-                        </div>
-                        <p>Lorem, ipsum.</p>
-                        <p>Avda. 1º de Mayo...,Spain</p>
-                        <p>2</p>
-                        <p>$ 2548</p>
-                        <div class="text flex_column center">
-                            <p id="success">Paid</p>
-                            <p id="success">Delivered</p>
-                        </div>
-                        <div class="action flex_row space_between center">
-                            <button><img src="../images/file_download_black.png" alt=""></button>
-                            <button><img src="../images/delete_outline_black_24dp 1.png" alt=""></button>
-                        </div>
-                    </div>
-                    <div class="value flex_row space_between center">
-                        <div class="image">
-                            <span></span>
-                        </div>
-                        <p>Lorem, ipsum.</p>
-                        <p>Avda. 1º de Mayo...,Spain</p>
-                        <p>2</p>
-                        <p>$ 2548</p>
-                        <div class="text flex_column center">
-                            <p id="success">Paid</p>
-                            <p id="success">Delivered</p>
-                        </div>
-                        <div class="action flex_row space_between center">
-                            <button><img src="../images/file_download_black.png" alt=""></button>
-                            <button><img src="../images/delete_outline_black_24dp 1.png" alt=""></button>
-                        </div>
-                    </div>
+                <div id="orderss"></div>
                 </div>
             </div>
+            
+            <!-- <div id="mainss"></div> -->
+
             <div class="menu flex_column" id="language">
-                <div class="item flex_row center" onclick="window.location.href = '../Profile/profile.html'">
+                <div class="item flex_row center" 
+                    onclick="ChangeAll('english');change();"
+                >
                     <img src="../images/great_britain.png" alt="">
                     <p>English</p>
                 </div>
-                <div class="item flex_row center" onclick="window.location.href = '../Profile/profile.html'; localStorage.setItem('password', 'true')">
+                <div class="item flex_row center" 
+                    onclick="ChangeAll('spanish');change();"
+                >
                     <img src="../images/spain.png" alt="">
                     <p>Spanish</p>
                 </div>
             </div>
-            <div class="menu flex_column" id="menu">
+            <!-- <div class="menu flex_column" id="menu">
                 <div class="item flex_row center" onclick="window.location.href = '../Profile/profile.html'">
                     <img src="../images/account_circle_green.png" alt="">
                     <p>Profile</p>
@@ -440,7 +313,8 @@
                     <img src="../images/logout_green.png" alt="">
                     <p>Logout</p>
                 </div>
-            </div>
+            </div> -->
+            <div id="menus"></div>
         </div>
     </div>
     <!-- <script>window.addEventListener('resize', () => { console.log(window.innerWidth); })</script> -->

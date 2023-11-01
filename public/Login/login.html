@@ -22,7 +22,7 @@
         </div>
         <div class="right_section flex_row justify_center center">
             <img src="../images/design element top right.png" class="design_element">
-            <div class="content_wrapper flex_column center">
+            <div class="content_wrapper flex_column center" id="logss">
                 <h4 id="stagger">Log In To Admin</h4>
                 <div class="input flex_row center" id="stagger">
                     <svg width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -46,21 +46,33 @@
                     </div>
                     <a href="../Forgot/forgot.html">Forgot Password?</a>
                 </div>
-                <button onclick="Posts(
-                    {
-                        email: document.getElementById('mail').value,
-                        password: document.getElementById('pass').value,
-                        method: 'POST',
-                        urls: 'user/login',
-                        headerss: {
-                            'Content-Type': 'application/json',
-                        },
-                        actions: window.location.href = '../Dashboard/dashboard.html',
-                        saving: 'Login'
-                    }
-                )">Log In</button>
+                <button onclick="Logs()">Log In</button>
+            </div>
+            <div id="loadings" style="display: none;">
+                <div style="height: 70px; width: 70px; border-radius: 50%; border-top: 10px solid red;
+                border-right: 10px solid rgb(255, 143, 143);
+                border-bottom: 10px solid red;
+                border-left: 10px solid rgb(255, 143, 143);
+                -webkit-animation: spin 2s linear infinite;
+                animation: spin 2s linear infinite;"></div>
+                <h3 style="margin-top: 15px;">Loading...</h3>
+            </div>
+            <div id="snackbar" style="visibility: hidden; /* Hidden by default. Visible on click */
+            min-width: 250px; /* Set a default minimum width */
+            margin-left: -125px; /* Divide value of min-width by 2 */
+            background-color: #333; /* Black background color */
+            color: #fff; /* White text color */
+            text-align: center; /* Centered text */
+            border-radius: 2px; /* Rounded borders */
+            padding: 16px; /* Padding */
+            position: fixed; /* Sit on top of the screen */
+            z-index: 1; /* Add a z-index if needed */
+            left: 50%; /* Center the snackbar */
+            bottom: 30px; /* 30px from the bottom */">
+                <label id="texts">Some text some message..</label>
             </div>
         </div>
+        <!-- <div class="loader"></div> -->
     </div>
 </body>
 </html>

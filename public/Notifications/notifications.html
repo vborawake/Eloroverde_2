@@ -66,11 +66,15 @@
                 </div>
             </div>
             <div class="menu flex_column" id="language">
-                <div class="item flex_row center" onclick="window.location.href = '../Profile/profile.html'">
+                <div class="item flex_row center" 
+                    onclick="ChangeAll('english');change();"
+                >
                     <img src="../images/great_britain.png" alt="">
                     <p>English</p>
                 </div>
-                <div class="item flex_row center" onclick="window.location.href = '../Profile/profile.html'; localStorage.setItem('password', 'true')">
+                <div class="item flex_row center" 
+                    onclick="ChangeAll('spanish');change();"
+                >
                     <img src="../images/spain.png" alt="">
                     <p>Spanish</p>
                 </div>
@@ -168,21 +172,21 @@
                         <div class="image">
                             <img src="../images/profile.png" alt="profile image">
                         </div>
-                        <p id="username">John</p>
+                        <p id="username">Admin</p>
                     </div>
                     <div class="menu flex_column" id="menu">
                         <div class="item flex_row center" onclick="window.location.href = '../Profile/profile.html'">
                             <img src="../images/account_circle_green.png" alt="">
                             <p>Profile</p>
                         </div>
-                        <div class="item flex_row center" onclick="window.location.href = '../Profile/profile.html'; localStorage.setItem('password', 'true')">
+                        <!-- <div class="item flex_row center" onclick="window.location.href = '../Profile/profile.html'; localStorage.setItem('password', 'true')">
                             <img src="../images/password_green.png" alt="">
                             <p>Change Password</p>
                         </div>
                         <div class="item flex_row center" onclick="window.location.href = '../Notification Settings/settingsAdmin.html'">
                             <img src="../images/notifications_green.png" alt="">
                             <p>Notification Settings</p>
-                        </div>
+                        </div> -->
                         <div class="item flex_row center" onclick="window.location.href = '../Login/login.html'">
                             <img src="../images/logout_green.png" alt="">
                             <p>Logout</p>

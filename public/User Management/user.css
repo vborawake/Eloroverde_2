@@ -336,6 +336,9 @@ input:focus {
 .container .content_wrapper .appointments .values p:nth-child(3) {
     text-align: center;
     width: 15%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .container .content_wrapper .appointments .header p:nth-child(4),

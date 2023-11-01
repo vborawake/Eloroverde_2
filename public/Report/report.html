@@ -9,9 +9,17 @@
     <script defer src="../pagination.js"></script>
     <link rel="stylesheet" href="report.css">
     <link rel="stylesheet" href="../helper.css">
+    <script defer type="text/javascript" src="../rest_apis.js"></script>
     <title>Report</title>
 </head>
-<body>
+<body onload="{
+    // var data = JSON.parse(localStorage.getItem('Login'));
+    javascript:
+    // goes();
+    Ordersss();
+    Usersss();
+    change();
+    }">
     <div class="container flex_column">
         <div class="content_wrapper flex_row width_full">
             <div class="notifications_wrapper flex_column">
@@ -66,7 +74,7 @@
                     </div>
                 </div>
             </div>
-            <div class="sidebar flex_column">
+            <!-- <div class="sidebar flex_column">
                 <img src="../images/logo.png">
                 <ul>
                     <li class="flex_column justify_center">
@@ -145,12 +153,15 @@
                         <img src="../images/logout.png" alt="">
                     </div>
                 </div>
-            </div>
+            </div> -->
+            
+            <div id="sides"></div>
+            
             <div class="right_section flex_column">
                 <div class="header flex_row center space_between" id="stagger">
-                    <div class="header_left_section flex_column">
-                        <h1>Welcome Back, <span id="username">John</span></h1>
-                        <p>Here is what happening with your store today !</p>
+                    <div class="header_left_section flex_column" id="welc">
+                        <!-- <h1>Welcome Back, <span id="username">Admin</span></h1>
+                        <p>Here is what happening with your store today !</p> -->
                     </div>
                     <div class="header_right_section flex_row center" onclick="showPopup(event)">
                         <div class="search flex_row center">
@@ -160,11 +171,12 @@
                         <div class="image">
                             <img src="../images/profile.png" alt="profile image">
                         </div>
-                        <p id="username">John</p>
+                        <p id="username">Admin</p>
                     </div>
                 </div>
                 <div class="stats flex_row space_between" id="stagger">
-                    <div class="stat flex_column space_evenly" id="stat_stagger">
+                    <div id="rowww" class="stats flex_row space_between" style="width: 100%;">
+                    <!-- <div class="stat flex_column space_evenly" id="stat_stagger">
                         <div class="top_row flex_row center">
                             <img src="../images/sales.png" alt="sales">
                             <p>Total Sales</p>
@@ -203,40 +215,41 @@
                             <p>1236</p>
                             <img src="../images/sales_icon.png" alt="">
                         </div>
+                    </div> -->
                     </div>
                 </div>
                 <div class="bar_area flex_row space_between" id="stagger">
                     <div class="bar flex_column box" id="chart_stagger">
-                        <div class="header flex_row space_between center width_full">
-                            <h1>Total Revenue $ 347200</h1>
+                        <div class="header flex_row space_between center width_full" id="totrev">
+                            <!-- <h1>Total Revenue $ 347200</h1>
                             <div class="date_picker flex_row space_between center">
                                 <p>May 2023</p>
                                 <svg width="24" height="24" viewBox="0 0 15 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M13.0417 2H12.25V0H10.6667V2H4.33333V0H2.75V2H1.95833C1.07958 2 0.382917 2.9 0.382917 4L0.375 18C0.375 19.1 1.07958 20 1.95833 20H13.0417C13.9125 20 14.625 19.1 14.625 18V4C14.625 2.9 13.9125 2 13.0417 2ZM13.0417 18H1.95833V8H13.0417V18ZM5.125 12H3.54167V10H5.125V12ZM8.29167 12H6.70833V10H8.29167V12ZM11.4583 12H9.875V10H11.4583V12ZM5.125 16H3.54167V14H5.125V16ZM8.29167 16H6.70833V14H8.29167V16ZM11.4583 16H9.875V14H11.4583V16Z" fill="#9699A0"/>
                                 </svg>
                                 <input type="date" name="" id="">
-                            </div>
+                            </div> -->
                         </div>
                         <canvas id="bar"></canvas>
                     </div>
                 </div>
                 <div class="chart_section flex_row space_between" id="stagger">
                     <div class="area_chart box flex_column align_flex_start" id="chart_stagger">
-                        <div class="header flex_row space_between center width_full">
-                            <h1>Order</h1>
+                        <div class="header flex_row space_between center width_full" id="ords">
+                            <!-- <h1>Order</h1>
                             <div class="date_picker flex_row space_between center">
                                 <p>2023</p>
                                 <svg width="24" height="24" viewBox="0 0 15 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M13.0417 2H12.25V0H10.6667V2H4.33333V0H2.75V2H1.95833C1.07958 2 0.382917 2.9 0.382917 4L0.375 18C0.375 19.1 1.07958 20 1.95833 20H13.0417C13.9125 20 14.625 19.1 14.625 18V4C14.625 2.9 13.9125 2 13.0417 2ZM13.0417 18H1.95833V8H13.0417V18ZM5.125 12H3.54167V10H5.125V12ZM8.29167 12H6.70833V10H8.29167V12ZM11.4583 12H9.875V10H11.4583V12ZM5.125 16H3.54167V14H5.125V16ZM8.29167 16H6.70833V14H8.29167V16ZM11.4583 16H9.875V14H11.4583V16Z" fill="#9699A0"/>
                                 </svg>
                                 <input type="date" name="" id="">
-                            </div>
+                            </div> -->
                         </div>
                         <canvas id="line"></canvas>
                     </div>
                     <div class="doughnut_chart box flex_column align_flex_start" id="chart_stagger">
-                        <div class="header flex_row space_between center width_full">
-                            <h1>Earning By Category</h1>
+                        <div class="header flex_row space_between center width_full" id="ern">
+                            <!-- <h1>Earning By Category</h1> -->
                         </div>
                         <canvas id="doughnut"></canvas>
                         <!-- <p id="summary">Total 212</p> -->
@@ -249,25 +262,29 @@
                 <img src="../images/account_circle_green.png" alt="">
                 <p>Profile</p>
             </div>
-            <div class="item flex_row center" onclick="window.location.href = '../Profile/profile.html'; localStorage.setItem('password', 'true')">
+            <!-- <div class="item flex_row center" onclick="window.location.href = '../Profile/profile.html'; localStorage.setItem('password', 'true')">
                 <img src="../images/password_green.png" alt="">
                 <p>Change Password</p>
             </div>
             <div class="item flex_row center" onclick="window.location.href = '../Notification Settings/settingsAdmin.html'">
                 <img src="../images/notifications_green.png" alt="">
                 <p>Notification Settings</p>
-            </div>
+            </div> -->
             <div class="item flex_row center" onclick="window.location.href = '../Login/login.html'">
                 <img src="../images/logout_green.png" alt="">
                 <p>Logout</p>
             </div>
         </div>
         <div class="menu flex_column" id="language">
-            <div class="item flex_row center" onclick="window.location.href = '../Profile/profile.html'">
+            <div class="item flex_row center" 
+                onclick="ChangeAll('english');change();"
+            >
                 <img src="../images/great_britain.png" alt="">
                 <p>English</p>
             </div>
-            <div class="item flex_row center" onclick="window.location.href = '../Profile/profile.html'; localStorage.setItem('password', 'true')">
+            <div class="item flex_row center" 
+                onclick="ChangeAll('spanish');change();"
+            >
                 <img src="../images/spain.png" alt="">
                 <p>Spanish</p>
             </div>

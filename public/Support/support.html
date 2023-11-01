@@ -9,9 +9,15 @@
     <script defer src="../pagination.js"></script>
     <link rel="stylesheet" href="../helper.css">
     <link rel="stylesheet" href="support.css">
+    <script defer type="text/javascript" src="../rest_apis.js"></script>
     <title>Support Management</title>
 </head>
-<body>
+<body onload="{
+    var data = JSON.parse(localStorage.getItem('Login'));
+    javascript:
+    goes();
+    change();
+    }">
     <div class="container flex_column">
         <div class="content_wrapper flex_row width_full">
             <div class="notifications_wrapper flex_column">
@@ -66,7 +72,7 @@
                     </div>
                 </div>
             </div>
-            <div class="sidebar flex_column">
+            <!-- <div class="sidebar flex_column">
                 <img src="../images/logo.png">
                 <ul>
                     <li class="flex_column justify_center">
@@ -145,7 +151,10 @@
                         <img src="../images/logout.png" alt="">
                     </div>
                 </div>
-            </div>
+            </div> -->
+            
+            <div id="sides"></div>
+
             <div class="popup flex_column">
                 <div class="header flex_row space_between center">
                     <p>Request Details</p>
@@ -154,26 +163,26 @@
                 <div class="form flex_row">
                     <div class="form_left_section flex_column center">
                         <div class="image">
-                            <input type="file">
+                            <input type="file" disabled>
                         </div>
-                        <button>Close</button>
-                        <button>Delete</button>
+                        <!-- <button>Close</button>
+                        <button>Delete</button> -->
                     </div>
                     <div class="form_right_section flex_column">
                         <div class="half_input flex_row center space_between">
                             <div class="input flex_row center">
                                 <p>Name</p>
-                                <input type="text" placeholder="Dr. Astrid Helena" disabled>
+                                <input type="text" placeholder="Dr. Astrid Helena" disabled id="names">
                             </div>
                             <div class="input flex_row center">
                                 <p>Request ID</p>
-                                <input type="text" placeholder="121212" disabled>
+                                <input type="text" placeholder="121212" disabled id="reqid">
                             </div>
                         </div>
                         <div class="half_input flex_row center space_between">
                             <div class="input flex_row center">
                                 <p>Email</p>
-                                <input type="text" placeholder="astid@gmail.com" disabled>
+                                <input type="text" placeholder="astid@gmail.com" disabled id="emails">
                             </div>
                             <div class="input flex_row center">
                                 <p>Contact</p>
@@ -182,7 +191,7 @@
                                         <input type="text" placeholder="+81" disabled>
                                     </div>
                                     <div class="number">
-                                        <input type="text" placeholder="25489662256" disabled>
+                                        <input type="text" placeholder="25489662256" disabled id="contacts">
                                     </div>
                                 </div>
                             </div>
@@ -190,17 +199,17 @@
                         <div class="half_input flex_row center space_between">
                             <div class="input flex_row center">
                                 <p>Location</p>
-                                <input type="text" placeholder="-" disabled>
+                                <input type="text" placeholder="-" disabled id="locations">
                             </div>
                             <div class="input flex_row center">
                                 <p>Date</p>
-                                <input type="date">
+                                <input type="date" id="dates" disabled>
                             </div>
                         </div>
                         <div class="full_input flex_row center space_between">
                             <div class="input flex_row center">
                                 <p>Message</p>
-                                <input type="text" placeholder="Lorem, ipsum." disabled>
+                                <input type="text" placeholder="Lorem, ipsum." disabled id="messages">
                             </div>
                         </div>
                         <div class="half_input flex_row center space_between">
@@ -210,16 +219,16 @@
                             </div>
                         </div>
                         <div class="buttons flex_row center">
-                            <button>Save</button>
-                            <button onclick="document.querySelector('.popup.flex_column').style.display = 'none';">Cancel</button>
+                            <!-- <button>Save</button>
+                            <button onclick="document.querySelector('.popup.flex_column').style.display = 'none';">Cancel</button> -->
                         </div>
                     </div>
                 </div>
             </div>
             <div class="right_section flex_column">
                 <div class="header flex_row center space_between" id="stagger">
-                    <div class="header_left_section flex_column">
-                        <h1>Support Management</h1>
+                    <div class="header_left_section flex_column" id="supp">
+                        <!-- <h1>Support Management</h1> -->
                     </div>
                     <div class="header_right_section flex_row center" onclick="showPopup(event)">
                         <div class="search flex_row center">
@@ -229,7 +238,7 @@
                         <div class="image">
                             <img src="../images/profile.png" alt="profile image">
                         </div>
-                        <p id="username">John</p>
+                        <p id="username">Admin</p>
                     </div>
                 </div>
                 <div class="appointments flex_column box" id="stagger">
@@ -237,15 +246,17 @@
                         <h1>List Of All Transactions</h1>
                     </div> -->
                     <div class="header flex_row space_between center" id="table_stagger">
-                        <p>#</p>
+                        <div class="flex_row space_between center" style="width: 100%;" id="transnam">
+                        <!-- <p>#</p>
                         <p>Name</p>
                         <p>Request ID</p>
                         <p>Email</p>
                         <p>Message</p>
                         <p>Date</p>
-                        <p>Action</p>
+                        <p>Action</p> -->
+                        </div>
                     </div>
-                    <div class="values flex_row space_between center" id="table_stagger">
+                    <!-- <div class="values flex_row space_between center" id="table_stagger">
                         <p>1</p>
                         <p>Alex</p>
                         <p>12545</p>
@@ -304,7 +315,8 @@
                             <button onclick="showDetails(event)"><img src="../images/visibility_black_24dp 5.png" alt=""></button>
                             <button><img src="../images/delete_outline_black_24dp 1.png" alt=""></button>
                         </div>
-                    </div>
+                    </div> -->
+                <div id="datass"></div>
                 </div>
                 <div class="footer flex_row space_between center" id="stagger">
                     <p>Showing <span id="current">05</span> Of <span id="total">05</span> Entries</p>
@@ -316,36 +328,61 @@
                     </div>
                 </div>
             </div>
+            <div class="popup flex_column delete_popup">
+                <div class="header flex_row space_between center">
+                    <p>Delete</p>
+                    <button onclick="document.querySelector('.delete_popup').style.display = 'none';">Close</button>
+                </div>
+                <div class="form flex_row">
+                    <div class="form_right_section flex_column">
+                        <div class="full_input flex_row center space_between">
+                            <div class="input flex_row center">
+                                <p style="width: fit-content !important;">Are you sure you want to delete? The action is not reversible</p>
+                            </div>
+                        </div>
+                        <div class="buttons flex_row center">
+                            <button>Delete</button>
+                            <button onclick="document.querySelector('.delete_popup').style.display = 'none';">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         </div>
         <div class="menu flex_column" id="menu">
             <div class="item flex_row center" onclick="window.location.href = '../Profile/profile.html'">
                 <img src="../images/account_circle_green.png" alt="">
                 <p>Profile</p>
             </div>
-            <div class="item flex_row center" onclick="window.location.href = '../Profile/profile.html'; localStorage.setItem('password', 'true')">
+            <!-- <div class="item flex_row center" onclick="window.location.href = '../Profile/profile.html'; localStorage.setItem('password', 'true')">
                 <img src="../images/password_green.png" alt="">
                 <p>Change Password</p>
             </div>
             <div class="item flex_row center" onclick="window.location.href = '../Notification Settings/settingsAdmin.html'">
                 <img src="../images/notifications_green.png" alt="">
                 <p>Notification Settings</p>
-            </div>
+            </div> -->
             <div class="item flex_row center" onclick="window.location.href = '../Login/login.html'">
                 <img src="../images/logout_green.png" alt="">
                 <p>Logout</p>
             </div>
         </div>
         <div class="menu flex_column" id="language">
-            <div class="item flex_row center" onclick="window.location.href = '../Profile/profile.html'">
+            <div class="item flex_row center" 
+                onclick="ChangeAll('english');change();"
+            >
                 <img src="../images/great_britain.png" alt="">
                 <p>English</p>
             </div>
-            <div class="item flex_row center" onclick="window.location.href = '../Profile/profile.html'; localStorage.setItem('password', 'true')">
+            <div class="item flex_row center" 
+                onclick="ChangeAll('spanish');change();"
+            >
                 <img src="../images/spain.png" alt="">
                 <p>Spanish</p>
             </div>
         </div>
     </div>
+    <p id="tooltip"></p>
     <script>window.addEventListener('resize', () => { console.log(window.innerWidth); })</script>
 </body>
 </html>

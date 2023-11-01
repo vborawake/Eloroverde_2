@@ -4,12 +4,16 @@ const introductionScreen = document.querySelector('.introduction_screen.flex_col
 const termsConditions = document.querySelector('.terms_conditions.flex_column');
 const categoryScreen = document.querySelector('.faq');
 const helpCenter = document.querySelector('.help_center.flex_column');
+var myInterval
+var datas = JSON.parse(localStorage.getItem('Login'));
+var data = []
 
 function showEditScreen(e, which) {
     console.log('Triggered');
     
     if (which === 'header') {
-        console.log(e.currentTarget.querySelector('p').innerHTML);
+        console.log();
+        if (e.currentTarget.querySelector('p').innerHTML === 'Content Management System (CMS)') return;
         if (e.currentTarget.querySelector('p').innerHTML === 'Back &lt; FAQ &lt; Sign Up &amp; Login') {
             categoryScreen.style.display = 'block';
             splashScreen.style.display = 'none';
@@ -29,7 +33,7 @@ function showEditScreen(e, which) {
         termsConditions.style.display = 'none';
         defaultSection.style.display = 'flex';
         categoryScreen.style.display = 'none';
-        e.currentTarget.querySelector('p').innerHTML = 'Content Management System';
+        e.currentTarget.querySelector('p').innerHTML = 'Content Management System (CMS)';
         e.currentTarget.querySelector('button').style.display = 'none';
         addAnimations();
     } else if (which === 'splash') {
@@ -158,4 +162,51 @@ function addAnimations() {
     //     opacity: 0,
     //     duration: 0.5
     // });
+}
+
+function goes() {
+    Gets(
+        {
+            method: 'GET',
+            urls: 'cms/cms',
+            headerss: {
+                'Content-Type': 'application/json',
+                'authorization': 'Bearer '+datas.token
+            },
+            actions: '',
+            // saving: 'CMS'
+        }
+        ).then((res)=> {
+            console.log(res, "CRM")
+            data = res
+            document.getElementById('splashimg').src = `data:image/png;base64, ${data[0].image}`
+            document.getElementById('splashtags').value = data[0].name
+            document.getElementById('logos').value = `data:image/png;base64, ${data[0].image}`
+            document.getElementById('intro1title').value = data[1].name
+            document.getElementById('logogo').src = `data:image/png;base64, ${data[0].image}`
+            document.getElementById('termstitle').value = data[5].name
+            document.getElementById('termsdesc').value = data[5].description
+            document.getElementById('termsemail').value = data[6].email
+            document.getElementById('termsnum').value = data[6].mobile
+        })
+    // myInterval = setInterval(sets, 1000);
+    // return myInterval
+}
+
+function sets() {
+    var text = "";
+    var data = JSON.parse(localStorage.getItem('CMS'));
+    console.log(data, data[1].image, "DDDDDDDDDDDDDDDD");
+    document.getElementById('splashimg').src = `data:image/png;base64, ${data[0].image}`
+    document.getElementById('splashtags').value = data[0].name
+    document.getElementById('logos').src = `data:image/png;base64, ${data[1].image}`
+    document.getElementById('logos').value = data[1].image
+    document.getElementById('intro1title').value = data[1].name
+    document.getElementById('logogo').src = `data:image/png;base64, ${data[0].image}`
+    document.getElementById('termstitle').value = data[5].name
+    document.getElementById('termsdesc').value = data[5].description
+    document.getElementById('termsemail').value = data[6].email
+    document.getElementById('termsnum').value = data[6].mobile
+    // intro1title
+    clearInterval(myInterval);
 }

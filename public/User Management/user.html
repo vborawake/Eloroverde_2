@@ -14,19 +14,9 @@
 </head>
 <body onload="{
     var data = JSON.parse(localStorage.getItem('Login'));
-    javascript:Gets(
-    {
-        method: 'GET',
-        urls: 'user',
-        headerss: {
-            'Content-Type': 'application/json',
-            'authorization': 'Bearer '+data.token
-        },
-        actions: '',
-        saving: 'Users'
-    }
-    );
-    goes()
+    javascript:
+    goes();
+    change();
     }">
     <div class="container flex_column">
         <div class="content_wrapper flex_row width_full">
@@ -82,7 +72,7 @@
                     </div>
                 </div>
             </div>
-            <div class="sidebar flex_column">
+            <!-- <div class="sidebar flex_column">
                 <img src="../images/logo.png">
                 <ul>
                     <li class="flex_column justify_center">
@@ -161,7 +151,10 @@
                         <img src="../images/logout.png" alt="">
                     </div>
                 </div>
-            </div>
+            </div> -->
+            
+            <div id="sides"></div>
+
             <div class="popup flex_column">
                 <div class="header flex_row space_between center">
                     <p>Request Details</p>
@@ -172,8 +165,8 @@
                         <div class="image">
                             <input type="file">
                         </div>
-                        <button>Close</button>
-                        <button>Delete</button>
+                        <!-- <button>Close</button>
+                        <button>Delete</button> -->
                     </div>
                     <div class="form_right_section flex_column">
                         <div class="half_input flex_row center space_between">
@@ -240,10 +233,11 @@
                     </div>
                 </div>
             </div>
+
             <div class="right_section flex_column">
                 <div class="header flex_row center space_between" id="stagger">
                     <div class="header_left_section flex_column">
-                        <h1>User Management</h1>
+                        <h1 id="use_man">User Management</h1>
                     </div>
                     <div class="header_right_section flex_row center" onclick="showPopup(event)">
                         <div class="search flex_row center">
@@ -253,92 +247,24 @@
                         <div class="image">
                             <img src="../images/profile.png" alt="profile image">
                         </div>
-                        <p id="username">John</p>
+                        <p id="username">Admin</p>
                     </div>
                 </div>
-                <div class="appointments flex_column box" id="stagger">
+                <div class="appointments flex_column box" id="stagger" >
                     <div class="appointments_header flex_row center space_between" id="table_stagger">
-                        <h1>List Of All Logged Users</h1>
+                        <h1 id="lis">List Of All Logged Users</h1>
                     </div>
                     <div class="header flex_row space_between center" id="table_stagger">
-                        <p>Name</p>
+                        <div class="flex_row space_between center" style="width: 100%" id="user_head">
+                        <!-- <p>Name</p>
                         <p>Location</p>
                         <p>Email</p>
                         <p>Logged In At</p>
                         <p>Status</p>
-                        <p>Action</p>
-                    </div>
-                    <!-- <div class="values flex_row space_between center" id="table_stagger">
-                        <div class="user flex_row center">
-                            <span></span>
-                            <p>Alex</p>
-                        </div>
-                        <p>-</p>
-                        <p>alex@gmail.com</p>
-                        <p>20/07/2023 02:23 AM</p>
-                        <p>Active</p>
-                        <div class="action flex_row space_between center">
-                            <button onclick="showDetails(event)"><img src="../images/eye.png" alt=""></button>
-                            <button><img src="../images/delete_outline_black_24dp 1.png" alt=""></button>
+                        <p>Action</p> -->
                         </div>
                     </div>
-                    <div class="values flex_row space_between center" id="table_stagger">
-                        <div class="user flex_row center">
-                            <span></span>
-                            <p>Alex</p>
-                        </div>
-                        <p>-</p>
-                        <p>alex@gmail.com</p>
-                        <p>20/07/2023 02:23 AM</p>
-                        <p>Active</p>
-                        <div class="action flex_row space_between center">
-                            <button onclick="showDetails(event)"><img src="../images/eye.png" alt=""></button>
-                            <button><img src="../images/delete_outline_black_24dp 1.png" alt=""></button>
-                        </div>
-                    </div>
-                    <div class="values flex_row space_between center" id="table_stagger">
-                        <div class="user flex_row center">
-                            <span></span>
-                            <p>Alex</p>
-                        </div>
-                        <p>-</p>
-                        <p>alex@gmail.com</p>
-                        <p>20/07/2023 02:23 AM</p>
-                        <p>Active</p>
-                        <div class="action flex_row space_between center">
-                            <button onclick="showDetails(event)"><img src="../images/eye.png" alt=""></button>
-                            <button><img src="../images/delete_outline_black_24dp 1.png" alt=""></button>
-                        </div>
-                    </div>
-                    <div class="values flex_row space_between center" id="table_stagger">
-                        <div class="user flex_row center">
-                            <span></span>
-                            <p>Alex</p>
-                        </div>
-                        <p>-</p>
-                        <p>alex@gmail.com</p>
-                        <p>20/07/2023 02:23 AM</p>
-                        <p>Active</p>
-                        <div class="action flex_row space_between center">
-                            <button onclick="showDetails(event)"><img src="../images/eye.png" alt=""></button>
-                            <button><img src="../images/delete_outline_black_24dp 1.png" alt=""></button>
-                        </div>
-                    </div>
-                    <div class="values flex_row space_between center" id="table_stagger">
-                        <div class="user flex_row center">
-                            <span></span>
-                            <p>Alex</p>
-                        </div>
-                        <p>-</p>
-                        <p>alex@gmail.com</p>
-                        <p>20/07/2023 02:23 AM</p>
-                        <p>Active</p>
-                        <div class="action flex_row space_between center" id="table_stagger">
-                            <button onclick="showDetails(event)"><img src="../images/eye.png" alt=""></button>
-                            <button><img src="../images/delete_outline_black_24dp 1.png" alt=""></button>
-                        </div>
-                    </div> -->
-                        <div id="datass"></div>
+                    <div id="datass"></div>
                 </div>
                 <div class="footer flex_row space_between center" id="stagger">
                     <p>Showing <span id="current">05</span> Of <span id="total">05</span> Entries</p>
@@ -353,7 +279,8 @@
                     <div class="header flex_row center" onclick="showDetails(event)">
                         <p>Back &gt; User Details</p>
                     </div>
-                    <div class="form flex_row">
+
+                    <!-- <div class="form flex_row">
                         <div class="form_left_section flex_column center">
                             <div class="image">
                                 <input type="file">
@@ -413,7 +340,7 @@
                                             <p class="item flex_column justify_center">No</p>
                                         </div>
                                     </div>
-                                    <!-- <input type="text" placeholder="Male"> -->
+                                    
                                 </div>
                             </div>
                             <div class="order_details flex_column">
@@ -452,6 +379,28 @@
                                 </div>
                             </div>
                         </div>
+                    </div> -->
+
+                    <div id="popps"></div>
+
+                </div>
+                <div class="popup flex_column delete_popup">
+                    <div class="header flex_row space_between center">
+                        <p>Delete</p>
+                        <button onclick="document.querySelector('.delete_popup').style.display = 'none';">Close</button>
+                    </div>
+                    <div class="form flex_row">
+                        <div class="form_right_section flex_column">
+                            <div class="full_input flex_row center space_between">
+                                <div class="input flex_row center">
+                                    <p style="width: fit-content !important;">Are you sure you want to delete? The action is not reversible</p>
+                                </div>
+                            </div>
+                            <div class="buttons flex_row center">
+                                <button>Delete</button>
+                                <button onclick="document.querySelector('.delete_popup').style.display = 'none';">Cancel</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -461,29 +410,34 @@
                 <img src="../images/account_circle_green.png" alt="">
                 <p>Profile</p>
             </div>
-            <div class="item flex_row center" onclick="window.location.href = '../Profile/profile.html'; localStorage.setItem('password', 'true')">
+            <!-- <div class="item flex_row center" onclick="window.location.href = '../Profile/profile.html'; localStorage.setItem('password', 'true')">
                 <img src="../images/password_green.png" alt="">
                 <p>Change Password</p>
             </div>
             <div class="item flex_row center" onclick="window.location.href = '../Notification Settings/settingsAdmin.html'">
                 <img src="../images/notifications_green.png" alt="">
                 <p>Notification Settings</p>
-            </div>
+            </div> -->
             <div class="item flex_row center" onclick="window.location.href = '../Login/login.html'">
                 <img src="../images/logout_green.png" alt="">
                 <p>Logout</p>
             </div>
         </div>
         <div class="menu flex_column" id="language">
-            <div class="item flex_row center" onclick="window.location.href = '../Profile/profile.html'">
+            <div class="item flex_row center" 
+                onclick="ChangeAll('english');change();"
+            >
                 <img src="../images/great_britain.png" alt="">
                 <p>English</p>
             </div>
-            <div class="item flex_row center" onclick="window.location.href = '../Profile/profile.html'; localStorage.setItem('password', 'true')">
+            <div class="item flex_row center" 
+                onclick="ChangeAll('spanish');change();"
+            >
                 <img src="../images/spain.png" alt="">
                 <p>Spanish</p>
             </div>
         </div>
     </div>
+    <p id="tooltip"></p>
 </body>
 </html>

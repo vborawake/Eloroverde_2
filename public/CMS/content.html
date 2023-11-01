@@ -5,12 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script defer src="content.js"></script>
     <script defer src="../pagination.js"></script>
+    <script defer type="text/javascript" src="../rest_apis.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" integrity="sha512-16esztaSRplJROstbIIdwX3N97V1+pZvV33ABoG1H2OyTttBxEGkTsoIVsiP1iaTtM8b3+hu2kB6pQ4Clr5yug==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="../helper.css">
     <link rel="stylesheet" href="content.css">
     <title>CMS</title>
 </head>
-<body>
+<body onload="{
+    var data = JSON.parse(localStorage.getItem('Login'));
+    javascript:
+    goes();
+    }">
     <div class="container flex_column">
         <div class="content_wrapper flex_row width_full">
             <div class="notifications_wrapper flex_column">
@@ -158,7 +163,7 @@
                         <div class="image">
                             <img src="../images/profile.png" alt="profile image">
                         </div>
-                        <p id="username">John</p>
+                        <p id="username">Admin</p>
                     </div>
                 </div>
                 <div class="content_header flex_row space_between center" onclick="showEditScreen(event, 'header')" id="stagger">
@@ -213,12 +218,21 @@
                             <button onclick="showEditScreen(event, 'terms')"><img src="../images/edit_yellow.png" alt=""></button>
                         </div>
                     </div>
+                    <div class="footer flex_row space_between center" id="stagger" style="padding: 0 2rem 1rem 2rem;">
+                        <p>Showing <span id="current">05</span> Of <span id="total">05</span> Entries</p>
+                        <div class="pagination flex_row center" onclick="changePage(event)">
+                            <button id="prev">Prev</button>
+                            <button class="active" onclick="showPage(event, '.appointments.flex_column.box')">1</button>
+                            <button onclick="showPage(event, '.appointments.flex_column.box')">2</button>
+                            <button id="next">Next</button>
+                        </div>
+                    </div>
                 </div>
                 <div class="splash_screen flex_column" style="display: none;" id="screen">
                     <div class="input flex_row align_flex_start">
                         <p>Logo</p>
                         <div class="image flex_row justify_center center">
-                            <img src="../images/Logo.png" alt="">
+                            <img src="../images/Logo.png" alt="" id="splashimg">
                         </div>
                         <div class="image_input">
                             <input type="text" placeholder="Choose File">
@@ -230,7 +244,7 @@
                     </div>
                     <div class="input flex_row align_flex_start">
                         <p>Tagline</p>
-                        <input type="text" placeholder="Lorem Ipsum">
+                        <input type="text" placeholder="Lorem Ipsum" id="splashtags">
                     </div>
                     <button>Save</button>
                 </div>
@@ -238,12 +252,12 @@
                     <div class="input flex_row align_flex_start">
                         <p>Logo</p>
                         <div class="image flex_row justify_center center">
-                            <img src="../images/Logo.png" alt="">
+                            <img src="../images/Logo.png" alt="" id="logogo">
                         </div>
                         <div class="image_input">
                             <input type="text" placeholder="Choose File">
                             <div class="file_input flex_row justify_center center">
-                                <input type="file" name="" id="">
+                                <input type="file" name="">
                                 <img src="../images/file_download_black.png" alt="">
                             </div>
                         </div>
@@ -251,30 +265,30 @@
                     <div class="input flex_row align_flex_start">
                         <p>Image</p>
                         <div class="image flex_row justify_center center">
-                            <!-- <img src="../images/Logo.png" alt=""> -->
+                            <img src="../images/Logo.png" alt="" id="logos">
                         </div>
                         <div class="image_input">
                             <input type="text" placeholder="Choose File">
                             <div class="file_input flex_row justify_center center">
-                                <input type="file" name="" id="">
+                                <input type="file" name="">
                                 <img src="../images/file_download_black.png" alt="">
                             </div>
                         </div>
                     </div>
                     <div class="input flex_row align_flex_start">
                         <p>Title</p>
-                        <input type="text" placeholder="Lorem Ipsum">
+                        <input type="text" placeholder="Lorem Ipsum" id="intro1title">
                     </div>
                     <button>Save</button>
                 </div>
                 <div class="terms_conditions flex_column" style="display: none;" id="screen">
                     <div class="input flex_row align_flex_start">
                         <p>Title</p>
-                        <input type="text" placeholder="Lorem Ipsum">
+                        <input type="text" placeholder="Lorem Ipsum" id="termstitle">
                     </div>
                     <div class="input flex_row align_flex_start">
                         <p>Description</p>
-                        <textarea type="text" placeholder="Lorem Ipsum"></textarea>
+                        <textarea type="text" placeholder="Lorem Ipsum" id="termsdesc"></textarea>
                     </div>
                     <button>Save</button>
                 </div>
@@ -294,15 +308,15 @@
                         <h1>Edit Query</h1>
                         <div class="input flex_column">
                             <p>Category</p>
-                            <input type="text">
+                            <input type="text" id="catimg">
                         </div>
                         <div class="input flex_column">
                             <p>Title</p>
-                            <input type="text">
+                            <input type="text" id="cattitle">
                         </div>
                         <div class="input flex_column">
                             <p>Details</p>
-                            <textarea></textarea>
+                            <textarea id="catimg"></textarea>
                         </div>
                         <div class="buttons flex_row center">
                             <button>Submit</button>
@@ -434,16 +448,16 @@
                 <div class="terms_conditions help_center flex_column" style="display: none;" id="screen">
                     <div class="input flex_row align_flex_start">
                         <p>Email</p>
-                        <input type="text" placeholder="Lorem Ipsum">
+                        <input type="text" placeholder="Lorem Ipsum" id="termsemail">
                     </div>
                     <div class="input flex_row center">
                         <p>Contact</p>
                         <div class="contact flex_row space_between center">
                             <div class="country_code">
-                                <input type="text" placeholder="+81" disabled>
+                                <input type="text" placeholder="+81">
                             </div>
                             <div class="number">
-                                <input type="text" placeholder="25489662256" disabled>
+                                <input type="text" placeholder="25489662256" id="termsnum">
                             </div>
                         </div>
                     </div>
@@ -456,29 +470,34 @@
                 <img src="../images/account_circle_green.png" alt="">
                 <p>Profile</p>
             </div>
-            <div class="item flex_row center" onclick="window.location.href = '../Profile/profile.html'; localStorage.setItem('password', 'true')">
+            <!-- <div class="item flex_row center" onclick="window.location.href = '../Profile/profile.html'; localStorage.setItem('password', 'true')">
                 <img src="../images/password_green.png" alt="">
                 <p>Change Password</p>
             </div>
             <div class="item flex_row center" onclick="window.location.href = '../Notification Settings/settingsAdmin.html'">
                 <img src="../images/notifications_green.png" alt="">
                 <p>Notification Settings</p>
-            </div>
+            </div> -->
             <div class="item flex_row center" onclick="window.location.href = '../Login/login.html'">
                 <img src="../images/logout_green.png" alt="">
                 <p>Logout</p>
             </div>
         </div>
         <div class="menu flex_column" id="language">
-            <div class="item flex_row center" onclick="window.location.href = '../Profile/profile.html'">
+            <div class="item flex_row center" 
+                onclick="ChangeAll('english');change();"
+            >
                 <img src="../images/great_britain.png" alt="">
                 <p>English</p>
             </div>
-            <div class="item flex_row center" onclick="window.location.href = '../Profile/profile.html'; localStorage.setItem('password', 'true')">
+            <div class="item flex_row center" 
+                onclick="ChangeAll('spanish');change();"
+            >
                 <img src="../images/spain.png" alt="">
                 <p>Spanish</p>
             </div>
         </div>
     </div>
+    <script>window.addEventListener('resize', () => { console.log(window.innerWidth); })</script>
 </body>
 </html>

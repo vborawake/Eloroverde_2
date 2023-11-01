@@ -237,7 +237,7 @@
 }
 
 .container .content_wrapper .popup {
-    position: absolute;
+    position: fixed;
     width: 70%;
     top: 10rem;
     left: 0;
@@ -458,6 +458,7 @@
     border: 2px solid #D9D9D9;
     height: 3rem;
     padding-left: 1rem;
+    padding-right: 3rem;
 }
 
 .container .content_wrapper .header_right_section .search img {
@@ -550,6 +551,14 @@
 
 .container .content_wrapper .right_section .form_screen {
     padding: 2rem;
+}
+
+#tooltip {
+    position: absolute;
+    padding: 0.3rem;
+    background: #9699A0;
+    color: #FFF;
+    width: fit-content;
 }
 
 @media screen and (min-width: 992px) and (max-width: 1200px) {

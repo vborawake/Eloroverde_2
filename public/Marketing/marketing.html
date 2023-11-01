@@ -7,9 +7,16 @@
     <script defer src="../pagination.js"></script>
     <link rel="stylesheet" href="../helper.css">
     <link rel="stylesheet" href="marketing.css">
+    <script defer type="text/javascript" src="../rest_apis.js"></script>
     <title>Manage Marketing</title>
 </head>
-<body>
+<body onload="{
+    var data = JSON.parse(localStorage.getItem('Login'));
+    javascript:
+    goes();
+    goes1();
+    change();
+    }">
     <div class="container flex_column">
         <div class="content_wrapper flex_row width_full">
             <div class="notifications_wrapper flex_column">
@@ -64,7 +71,7 @@
                     </div>
                 </div>
             </div>
-            <div class="sidebar flex_column">
+            <!-- <div class="sidebar flex_column">
                 <img src="../images/logo.png">
                 <ul>
                     <li class="flex_column justify_center">
@@ -143,42 +150,49 @@
                         <img src="../images/logout.png" alt="">
                     </div>
                 </div>
-            </div>
+            </div> -->
+            
+            <div id="sides"></div>
+            
             <div class="popup flex_column" id="add_coupon">
-                <div class="header flex_row space_between center">
-                    <p>Add Coupon Code</p>
-                    <button onclick="closeDetails(event)"><img src="../images/close_black.png" alt=""></button>
+                <div class="header flex_row space_between center" id="add_cou">
+                    <!-- <p id="add_cou">Add Coupon Code</p>
+                    <button onclick="closeDetails(event)"><img src="../images/close_black.png" alt=""></button> -->
                 </div>
                 <div class="form flex_row">
                     <div class="form_right_section flex_column">
                         <div class="half_input flex_row center space_between">
                             <div class="input flex_column">
                                 <p>Coupon Code</p>
-                                <input type="text" placeholder="Alex" disabled>
+                                <input type="text" placeholder="Alex" id="co">
                             </div>
                             <div class="input flex_column">
                                 <p>Discount Value</p>
-                                <input type="text" placeholder="-" disabled>
+                                <input type="text" placeholder="-" id="dv">
                             </div>
                         </div>
                         <div class="half_input flex_row center space_between">
                             <div class="input flex_column">
                                 <p>Expiration Date</p>
-                                <input type="date">
+                                <input type="date" id="exps">
                             </div>
                             <div class="input flex_column">
                                 <p>Usage Limit</p>
-                                <input type="date">
+                                <input type="date" id="usglim">
                             </div>
                         </div>
-                        <div class="full_input flex_row center space_between">
+                        <div class="half_input flex_row center space_between">
                             <div class="input flex_column">
                                 <p>Budget Amount</p>
-                                <input type="text" placeholder="10 % off on rolling tray" disabled>
+                                <input type="text" placeholder="10 % off on rolling tray" id="bug">
+                            </div>
+                            <div class="input flex_column">
+                                <p>Minimum Amount</p>
+                                <input type="text" placeholder="100" id="minn">
                             </div>
                         </div>
                         <div class="buttons flex_row center">
-                            <button>Save</button>
+                            <button onclick="AddCou()">Save</button>
                             <button onclick="closeDetails(event)">Cancel</button>
                         </div>
                     </div>
@@ -187,7 +201,7 @@
             <div class="right_section flex_column">
                 <div class="header flex_row center space_between">
                     <div class="header_left_section flex_column">
-                        <h1>Manage Marketing</h1>
+                        <h1 id="manmar">Manage Marketing</h1>
                     </div>
                     <div class="header_right_section flex_row center" onclick="showPopup(event)">
                         <div class="search flex_row center">
@@ -197,50 +211,67 @@
                         <div class="image">
                             <img src="../images/profile.png" alt="profile image">
                         </div>
-                        <p id="username">John</p>
+                        <p id="username">Admin</p>
                     </div>
                 </div>
                 <div class="details popup flex_column">
                     <div class="header flex_row space_between center" onclick="showDetails(event)">
-                        <p>Send an email to your subscribers</p>
-                        <button onclick="showDetails(event, 'screen_2')">Manage Coupon Code</button>
+                        <div class="flex_row space_between center" style="width: 100%;" id="manemail">
+                            <p>Send an email to your subscribers</p>
+                            <button onclick="showDetails(event, 'screen_2')">Manage Coupon Code</button>
+                        </div>
                     </div>
                     <div class="form flex_row">
                         <div class="form_right_section flex_column">
                             <div class="half_input flex_row center space_between">
                                 <div class="input flex_row center">
+                                    <input value="" onkeydown="return /[a-z]/i.test(event.key)" type="text" placeholder="Name" id="name">
+                                </div>
+                                <div class="input flex_row center">
+                                    <input type="text" placeholder="Email" id="mail">
+                                </div>
+                            </div>
+                            <!-- <div class="half_input flex_row center space_between">
+                                <div class="input flex_row center">
                                     <input type="text" placeholder="Name" disabled>
                                 </div>
                                 <div class="input flex_row center">
                                     <input type="text" placeholder="Email" disabled>
                                 </div>
-                            </div>
-                            <div class="half_input flex_row center space_between">
-                                <div class="input flex_row center">
-                                    <input type="text" placeholder="Name" disabled>
-                                </div>
-                                <div class="input flex_row center">
-                                    <input type="text" placeholder="Email" disabled>
-                                </div>
-                            </div>
-                            <div class="buttons flex_row space_between center">
-                                <button onclick="addRow(event)">Add Customer</button>
-                                <button>Send Invitation</button>
+                            </div> -->
+                            <div class="buttons flex_row space_between center" style="align-self: self-end;" id="add_cust">
+                                <!-- <button onclick="addRow(event)">Add Customer</button>
+                                <button onclick="Posts(
+                                    {
+                                        email: document.getElementById('mail').value,
+                                        name: document.getElementById('name').value,
+                                        title: 'Your coupon code is : SEED12',
+                                        method: 'POST',
+                                        urls: 'sendmail/sendmail',
+                                        headerss: {
+                                            'Content-Type': 'application/json',
+                                        },
+                                        actions: '',
+                                        saving: 'SendMail'
+                                    }
+                                )">Send Invitation</button> -->
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="order_details flex_column">
-                    <div class="order_details_header flex_row center space_between">
-                        <p>Status Of Invitation</p>
+                    <div class="order_details_header flex_row center space_between" id="stat">
+                        <!-- <p>Status Of Invitation</p> -->
                     </div>
                     <div class="table_header flex_row space_between center">
-                        <p>Name</p>
+                        <div class="flex_row space_between center" style="width: 100%" id="inv_nam">
+                        <!-- <p>Name</p>
                         <p>Email</p>
                         <p>Date</p>
-                        <p>Status</p>
+                        <p>Status</p> -->
+                        </div>
                     </div>
-                    <div class="value flex_row space_between center">
+                    <!-- <div class="value flex_row space_between center">
                         <p>Lorem, ipsum.</p>
                         <p>mathew@gmail.com</p>
                         <p>20/07/2023</p>
@@ -251,23 +282,35 @@
                         <p>mathew@gmail.com</p>
                         <p>20/07/2023</p>
                         <p id="pending">In Process</p>
+                    </div> -->
+                <div id="sendss"></div>
+                <div class="footer flex_row space_between center" id="stagger">
+                    <p>Showing <span id="current">05</span> Of <span id="total">05</span> Entries</p>
+                    <div class="pagination flex_row center" onclick="changePage(event)">
+                        <button id="prev">Prev</button>
+                        <button class="active" onclick="showPage(event, '.appointments.flex_column.box')">1</button>
+                        <button onclick="showPage(event, '.appointments.flex_column.box')">2</button>
+                        <button id="next">Next</button>
                     </div>
                 </div>
+                </div>
                 <div class="order_details flex_column" id="coupon_code" style="margin: 2rem 0 0 0;">
-                    <div class="order_details_header flex_row center space_between">
-                        <p>Coupon Code for Promo</p>
-                        <button onclick="showAddCouponCode(event, 'add')">Add Coupon Code</button>
+                    <div class="order_details_header flex_row center space_between" id="coup_prom">
+                        <!-- <p>Coupon Code for Promo</p>
+                        <button onclick="showAddCouponCode(event, 'add')">Add Coupon Code</button> -->
                     </div>
                     <div class="table_header flex_row space_between center">
-                        <p>Coupon Code</p>
+                        <div class="flex_row space_between center" style="width: 100%;" id="cou_nam">
+                        <!-- <p>Coupon Code</p>
                         <p>Discount %</p>
                         <p>Expiration Date</p>
                         <p>Usage Limit</p>
                         <p>Usage Total</p>
                         <p>Status</p>
-                        <p>Action</p>
+                        <p>Action</p> -->
+                        </div>
                     </div>
-                    <div class="value flex_row space_between center">
+                    <!-- <div class="value flex_row space_between center">
                         <p>SEED12</p>
                         <p>10 %</p>
                         <p>20/07/2023</p>
@@ -290,18 +333,21 @@
                             <button onclick="showAddCouponCode(event, 'edit')"><img src="../images/edit_yellow.png" alt=""></button>
                             <button><img src="../images/delete_outline_black_24dp 1.png" alt=""></button>
                         </div>
-                    </div>
+                    </div> -->
+                <div id="couponss"></div>
                 </div>
                 <div class="order_details flex_column" id="coupon_code" style="margin: 2rem 0 0 0;">
-                    <div class="order_details_header flex_row center space_between">
+                    <div class="order_details_header flex_row center space_between" id="cou">
                         <p>Manage Coupon Code</p>
                     </div>
                     <div class="table_header flex_row space_between center">
-                        <p>Coupon Code</p>
+                        <div class="flex_row space_between center" style="width: 100%;" id="mancou">
+                        <!-- <p>Coupon Code</p>
                         <p>Budget Allocated</p>
                         <p>Budget Used</p>
                         <p>Balanced</p>
-                        <p></p>
+                        <p></p> -->
+                        </div>
                     </div>
                     <div class="value flex_row space_between center">
                         <p>SEED12</p>
@@ -361,31 +407,54 @@
                     </div>
                 </div>
             </div>
+            <div class="popup flex_column delete_popup">
+                <div class="header flex_row space_between center">
+                    <p>Delete</p>
+                    <button onclick="document.querySelector('.delete_popup').style.display = 'none';">Close</button>
+                </div>
+                <div class="form flex_row">
+                    <div class="form_right_section flex_column">
+                        <div class="full_input flex_row center space_between">
+                            <div class="input flex_row center">
+                                <p style="width: fit-content !important;">Are you sure you want to delete? The action is not reversible</p>
+                            </div>
+                        </div>
+                        <div class="buttons flex_row center">
+                            <button>Delete</button>
+                            <button onclick="document.querySelector('.delete_popup').style.display = 'none';">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="menu flex_column" id="menu">
             <div class="item flex_row center" onclick="window.location.href = '../Profile/profile.html'">
                 <img src="../images/account_circle_green.png" alt="">
                 <p>Profile</p>
             </div>
-            <div class="item flex_row center" onclick="window.location.href = '../Profile/profile.html'; localStorage.setItem('password', 'true')">
+            <!-- <div class="item flex_row center" onclick="window.location.href = '../Profile/profile.html'; localStorage.setItem('password', 'true')">
                 <img src="../images/password_green.png" alt="">
                 <p>Change Password</p>
             </div>
             <div class="item flex_row center" onclick="window.location.href = '../Notification Settings/settingsAdmin.html'">
                 <img src="../images/notifications_green.png" alt="">
                 <p>Notification Settings</p>
-            </div>
+            </div> -->
             <div class="item flex_row center" onclick="window.location.href = '../Login/login.html'">
                 <img src="../images/logout_green.png" alt="">
                 <p>Logout</p>
             </div>
         </div>
         <div class="menu flex_column" id="language">
-            <div class="item flex_row center" onclick="window.location.href = '../Profile/profile.html'">
+            <div class="item flex_row center" 
+                onclick="ChangeAll('english');change();"
+            >
                 <img src="../images/great_britain.png" alt="">
                 <p>English</p>
             </div>
-            <div class="item flex_row center" onclick="window.location.href = '../Profile/profile.html'; localStorage.setItem('password', 'true')">
+            <div class="item flex_row center" 
+                onclick="ChangeAll('spanish');change();"
+            >
                 <img src="../images/spain.png" alt="">
                 <p>Spanish</p>
             </div>

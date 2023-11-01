@@ -245,6 +245,11 @@ input:focus {
     position: relative;
     width: 38%;
     height: 25rem;
+    overflow: scroll;
+}
+
+.container .content_wrapper .chart_section .doughnut_chart::-webkit-scrollbar {
+    overflow: hidden;
 }
 
 .container .content_wrapper .chart_section .doughnut_chart #summary {

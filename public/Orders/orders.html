@@ -9,9 +9,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" integrity="sha512-16esztaSRplJROstbIIdwX3N97V1+pZvV33ABoG1H2OyTttBxEGkTsoIVsiP1iaTtM8b3+hu2kB6pQ4Clr5yug==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script defer src="../pagination.js"></script>
     <script defer src="orders.js"></script>
+    <script defer type="text/javascript" src="../rest_apis.js"></script>
     <title>Orders</title>
 </head>
-<body>
+<body onload="{
+    var data = JSON.parse(localStorage.getItem('Login'));
+    javascript:
+    // goes();
+    goes1();
+    change();
+    }">
     <div class="container flex_column">
         <div class="content_wrapper flex_row width_full">
             <div class="notifications_wrapper flex_column">
@@ -66,7 +73,7 @@
                     </div>
                 </div>
             </div>
-            <div class="sidebar flex_column">
+            <!-- <div class="sidebar flex_column">
                 <img src="../images/logo.png">
                 <ul>
                     <li class="flex_column justify_center">
@@ -145,7 +152,10 @@
                         <img src="../images/logout.png" alt="">
                     </div>
                 </div>
-            </div>
+            </div> -->
+            
+            <div id="sides"></div>
+
             <div class="popup flex_column">
                 <div class="header flex_row space_between center">
                     <p>Request Details</p>
@@ -156,8 +166,8 @@
                         <div class="image">
                             <input type="file">
                         </div>
-                        <button>Close</button>
-                        <button>Delete</button>
+                        <!-- <button>Close</button>
+                        <button>Delete</button> -->
                     </div>
                     <div class="form_right_section flex_column">
                         <div class="half_input flex_row center space_between">
@@ -237,24 +247,26 @@
                         <div class="image">
                             <img src="../images/profile.png" alt="profile image">
                         </div>
-                        <p id="username">John</p>
+                        <p id="username">Admin</p>
                     </div>
                 </div>
                 <div class="appointments flex_column box" id="stagger">
                     <div class="appointments_header flex_row center space_between">
-                        <h1>List Of All Orders Received</h1>
+                        <h1 id="ord_rec">List Of All Orders Received</h1>
                     </div>
                     <div class="header flex_row space_between center" id="table_stagger">
-                        <p>Customer Name</p>
+                        <div class="flex_row space_between center" style="width: 100%" id="cusnam">
+                        <!-- <p>Customer Name</p>
                         <p>Order ID</p>
                         <p>Product Name</p>
                         <p>Image</p>
                         <p>Date</p>
                         <p>Amount</p>
                         <p>Status</p>
-                        <p>Action</p>
+                        <p>Action</p> -->
+                        </div>
                     </div>
-                    <div class="values flex_row space_between center" id="table_stagger">
+                    <!-- <div class="values flex_row space_between center" id="table_stagger">
                         <p>Alex</p>
                         <p>12546</p>
                         <p>Rolling Tray</p>
@@ -358,7 +370,8 @@
                             <button onclick="showDetails(event, 'product_details')"><img src="../images/eye.png" alt=""></button>
                             <button><img src="../images/delete_outline_black_24dp 1.png" alt=""></button>
                         </div>
-                    </div>
+                    </div> -->
+                    <div id="orderss"></div>
                 </div>
                 <div class="footer flex_row space_between center" id="stagger">
                     <p>Showing <span id="current">05</span> Of <span id="total">05</span> Entries</p>
@@ -378,8 +391,8 @@
                             <div class="image">
                                 <input type="file">
                             </div>
-                            <button>Delete</button>
-                            <button>Block</button>
+                            <!-- <button>Delete</button>
+                            <button>Block</button> -->
                         </div>
                         <div class="form_right_section flex_column">
                             <div class="half_input flex_row center space_between">
@@ -445,25 +458,29 @@
                 <img src="../images/account_circle_green.png" alt="">
                 <p>Profile</p>
             </div>
-            <div class="item flex_row center" onclick="window.location.href = '../Profile/profile.html'; localStorage.setItem('password', 'true')">
+            <!-- <div class="item flex_row center" onclick="window.location.href = '../Profile/profile.html'; localStorage.setItem('password', 'true')">
                 <img src="../images/password_green.png" alt="">
                 <p>Change Password</p>
             </div>
             <div class="item flex_row center" onclick="window.location.href = '../Notification Settings/settingsAdmin.html'">
                 <img src="../images/notifications_green.png" alt="">
                 <p>Notification Settings</p>
-            </div>
+            </div> -->
             <div class="item flex_row center" onclick="window.location.href = '../Login/login.html'">
                 <img src="../images/logout_green.png" alt="">
                 <p>Logout</p>
             </div>
         </div>
         <div class="menu flex_column" id="language">
-            <div class="item flex_row center" onclick="window.location.href = '../Profile/profile.html'">
+            <div class="item flex_row center" 
+                onclick="ChangeAll('english');change();"
+            >
                 <img src="../images/great_britain.png" alt="">
                 <p>English</p>
             </div>
-            <div class="item flex_row center" onclick="window.location.href = '../Profile/profile.html'; localStorage.setItem('password', 'true')">
+            <div class="item flex_row center" 
+                onclick="ChangeAll('spanish');change();"
+            >
                 <img src="../images/spain.png" alt="">
                 <p>Spanish</p>
             </div>

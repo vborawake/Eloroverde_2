@@ -510,14 +510,15 @@ input, textarea {
 
 .container .content_wrapper .details .image img {
     width: 100%;
-    object-position: 0 -8rem;
+    /* object-position: 0 -8rem; */
+    object-fit: cover;
 }
 
 .container .content_wrapper .details .image img.close {
-    position: absolute;
+    /* position: absolute;
     top: 0;
     bottom: 0;
-    right: 0;
+    right: 0; */
     margin: auto 0;
     height: 50%;
     width: auto;

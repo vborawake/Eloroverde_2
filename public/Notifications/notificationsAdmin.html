@@ -19,21 +19,21 @@
                     <path d="M16.6667 14.6667H15.6133L15.24 14.3067C16.5467 12.7867 17.3333 10.8133 17.3333 8.66667C17.3333 3.88 13.4533 0 8.66667 0C3.88 0 0 3.88 0 8.66667C0 13.4533 3.88 17.3333 8.66667 17.3333C10.8133 17.3333 12.7867 16.5467 14.3067 15.24L14.6667 15.6133V16.6667L21.3333 23.32L23.32 21.3333L16.6667 14.6667ZM8.66667 14.6667C5.34667 14.6667 2.66667 11.9867 2.66667 8.66667C2.66667 5.34667 5.34667 2.66667 8.66667 2.66667C11.9867 2.66667 14.6667 5.34667 14.6667 8.66667C14.6667 11.9867 11.9867 14.6667 8.66667 14.6667Z" fill="#778087"/>
                 </svg>
                 <div class="profile_img"></div>
-                <p class="username">John</p>
+                <p class="username">Admin</p>
             </div>
             <div class="menu flex_column" id="menu">
                 <div class="item flex_row center" onclick="window.location.href = '../Profile/profile.html'">
                     <img src="../images/account_circle_green.png" alt="">
                     <p>Profile</p>
                 </div>
-                <div class="item flex_row center" onclick="window.location.href = '../Profile/profile.html'; localStorage.setItem('password', 'true')">
+                <!-- <div class="item flex_row center" onclick="window.location.href = '../Profile/profile.html'; localStorage.setItem('password', 'true')">
                     <img src="../images/password_green.png" alt="">
                     <p>Change Password</p>
                 </div>
                 <div class="item flex_row center"  onclick="window.location.href = '../Notification/notification.html'">
                     <img src="../images/notifications_green.png" alt="">
                     <p>Notification Settings</p>
-                </div>
+                </div> -->
                 <div class="item flex_row center" onclick="window.location.href = '../Login/login.html'">
                     <img src="../images/logout_green.png" alt="">
                     <p>Logout</p>
@@ -94,11 +94,15 @@
                 </div>
             </div>
             <div class="menu flex_column" id="language">
-                <div class="item flex_row center" onclick="window.location.href = '../Profile/profile.html'">
+                <div class="item flex_row center" 
+                    onclick="ChangeAll('english');change();"
+                >
                     <img src="../images/great_britain.png" alt="">
                     <p>English</p>
                 </div>
-                <div class="item flex_row center" onclick="window.location.href = '../Profile/profile.html'; localStorage.setItem('password', 'true')">
+                <div class="item flex_row center" 
+                    onclick="ChangeAll('spanish');change();"
+                >
                     <img src="../images/spain.png" alt="">
                     <p>Spanish</p>
                 </div>

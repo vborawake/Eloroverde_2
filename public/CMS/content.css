@@ -259,7 +259,7 @@ input:focus, textarea:focus {
 
 .container .content_wrapper .content .values,
 .container .content_wrapper .category .values {
-    padding: 1rem 2rem;
+    padding: 1rem 2rem 0 2rem;
     text-align: center;
 }
 
@@ -455,10 +455,6 @@ input:focus, textarea:focus {
 
 .container .content_wrapper .help_center .input .number {
     width: 78%;
-}
-
-.container .content_wrapper .footer {
-    margin: 2rem 0 0 0;
 }
 
 .container .content_wrapper .footer > p {

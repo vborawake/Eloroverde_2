@@ -36,3 +36,39 @@ function addAnimations() {
         }
     });
 }
+
+function Logs() {
+    document.getElementById('logss').style.display = 'none'
+    document.getElementById('loadings').style.display = 'block'
+    Posts(
+        {
+            email: document.getElementById('mail').value,
+            password: document.getElementById('pass').value,
+            method: 'POST',
+            urls: 'user/login',
+            headerss: {
+                'Content-Type': 'application/json',
+            },
+            // actions: window.location.href = '../Dashboard/dashboard.html',
+            saving: 'Login'
+        }
+    ).then((res)=> {
+        if(res.success)
+        {
+            document.getElementById('logss').style.display = 'block'
+            document.getElementById('loadings').style.display = 'none'
+            document.getElementById('snackbar').style.visibility = 'visible'
+            document.getElementById('texts').innerHTML = 'Logged in Successfully'
+            setTimeout(function() {document.getElementById('snackbar').style.visibility = 'hidden'}, 2000);
+            window.location.href = '../Dashboard/dashboard.html'
+        }
+        else if(!res.success)
+        {
+            document.getElementById('logss').style.display = 'block'
+            document.getElementById('loadings').style.display = 'none'
+            document.getElementById('snackbar').style.visibility = 'visible'
+            document.getElementById('texts').innerHTML = 'Incorrect Credentials'
+            setTimeout(function() {document.getElementById('snackbar').style.visibility = 'hidden'}, 2000);
+        }
+    })
+}

@@ -263,12 +263,18 @@ input:focus {
 .container .content_wrapper .appointments .values p:nth-child(3) {
     text-align: center;
     width: 15%;
+    /* overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; */
 }
 
 .container .content_wrapper .appointments .header p:nth-child(4),
 .container .content_wrapper .appointments .values p:nth-child(4) {
     width: 20%;
     text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .container .content_wrapper .appointments .header p:nth-child(5),
